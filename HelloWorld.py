@@ -22,7 +22,7 @@ print("Indexes:", collection.index_information())
 embedding_model = SentenceTransformer("sentence-transformers/all-MiniLM-L12-v2")
 
 # Gemini setup
-genai.configure(api_key="AIzaSyDCsPcaLrlae0cRyxEJNm5mkzdCi6bAfkQ")
+genai.configure(api_key="API")
 model = genai.GenerativeModel('gemini-1.5-pro')
 
 
