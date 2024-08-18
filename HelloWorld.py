@@ -5,8 +5,18 @@ from sentence_transformers import SentenceTransformer
 
 # MongoDB connection
 client = pymongo.MongoClient('mongodb+srv://phuc:pBWtKzGm3jHnMxsr@cluster0.llq9qnt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
 db = client["sample_mflix"]
 collection = db['embedding_for_vector_search']
+
+print(f"Number of documents in collection: {collection.count_documents({})}")
+print("Indexes:", collection.index_information())
 
 # Load the embedding model
 embedding_model = SentenceTransformer("sentence-transformers/all-MiniLM-L12-v2")
@@ -48,7 +58,9 @@ def vector_search(user_query, collection, limit=4):
             "description": 1,
             "price": 1,
             "rating": 1,
-            "score": {"$meta": "vectorSearchScore"}
+            "score": {
+                "$meta": "vectorSearchScore"
+            }
         }
     }
 
@@ -59,6 +71,8 @@ def vector_search(user_query, collection, limit=4):
 
 def get_search_result(query, collection):
     get_knowledge = vector_search(query, collection, 10)
+    print("get_knowledge")
+    print(get_knowledge)
     search_result = ""
     for i, result in enumerate(get_knowledge, 1):
         search_result += f"\n {i}) Name: {result.get('name', 'N/A')}"
@@ -82,6 +96,7 @@ if prompt := st.chat_input():
 
     source_information = get_search_result(prompt.lower(), collection)
     combined_prompt = f"Become a sales consultant for a phone store. Customer's question: {prompt}\nAnswer the question based on the following product information: {source_information}."
+    print(combined_prompt)
 
     response = model.generate_content(combined_prompt)
     msg = response.text
