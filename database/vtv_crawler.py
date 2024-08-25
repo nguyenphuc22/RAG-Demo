@@ -1,8 +1,8 @@
 import pandas as pd
 from database.NewsCrawlerInterface import NewsCrawlerInterface
 
-class BaoMoiExcelCrawler(NewsCrawlerInterface):
-    def __init__(self, base_url='https://dantri.com.vn/'):
+class VTVExcelCrawler(NewsCrawlerInterface):
+    def __init__(self, base_url='https://vtv.vn/'):
         self.base_url = base_url
         self.articles = [
             {

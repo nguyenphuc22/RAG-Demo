@@ -8,6 +8,7 @@ from database.thanhnien_crawler import ThanhNienExcelCrawler
 from database.thuvienphapluat import ThuVienPhapLuatExcelCrawler
 from database.tuoitre_crawler import TuoiTreExcelCrawler
 from database.vnexpress_crawler import VnExpressExcelCrawler
+from database.vtv_crawler import VTVExcelCrawler
 from embedding.embedding_model import load_embedding_model
 from prompts.prompt import CHATBOT_PROMPT
 from search.vector_search import get_search_result, create_vector_and_update_mongodb
@@ -27,7 +28,8 @@ crawler_options = {
     "Thanh Niên": ThanhNienExcelCrawler,
     "Dân Trí": DanTriExcelCrawler,
     "Báo Pháp Luật": BaoPhapLuatExcelCrawler,
-    "Thư Viện Pháp Luật": ThuVienPhapLuatExcelCrawler
+    "Thư Viện Pháp Luật": ThuVienPhapLuatExcelCrawler,
+    "VTV": VTVExcelCrawler
 }
 selected_crawler = st.sidebar.selectbox("Select Crawler", list(crawler_options.keys()))
 
