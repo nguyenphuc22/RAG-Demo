@@ -9,6 +9,7 @@ from database.thuvienphapluat import ThuVienPhapLuatExcelCrawler
 from database.tuoitre_crawler import TuoiTreExcelCrawler
 from database.vnexpress_crawler import VnExpressExcelCrawler
 from embedding.embedding_model import load_embedding_model
+from prompts.prompt import CHATBOT_PROMPT
 from search.vector_search import get_search_result, create_vector_and_update_mongodb
 
 # Streamlit interface for API keys and connection string
@@ -17,6 +18,8 @@ gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
 mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", type="password")
 max_articles = st.sidebar.number_input("Maximum number of articles to crawl", min_value=1, max_value=100, value=20)
 client = init_mongodb_connection(mongo_connection_string)
+db_name = "sample_mflix"
+collection_name = "vien_articles" # Cái này tui tạo cho mọi người từng cái collect riêng nhé, đừng dùng chung.
 
 crawler_options = {
     "VnExpress": VnExpressExcelCrawler,
@@ -40,7 +43,7 @@ def crawl_and_update(crawler: NewsCrawlerInterface, max_articles: int):
         create_vector_and_update_mongodb(df,collection)
 
 if client:
-    collection = get_collection(client, "sample_mflix", "vnexpress_articles")
+    collection = get_collection(client, db_name, collection_name)
     print(f"Number of documents in collection: {collection.count_documents({})}")
     print("Indexes:", collection.index_information())
     embedding_model = load_embedding_model()
@@ -54,11 +57,12 @@ if client:
         st.stop()
 
     if st.sidebar.button("Crawl New Articles"):
+        print("Crawling new articles...")
         crawler_class = crawler_options[selected_crawler]
         crawler = crawler_class()
         crawl_and_update(crawler, max_articles)
 
-    st.title("💬 VnExpress RAG Chatbot")
+    st.title("💬 RAG Chatbot")
     st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using VnExpress articles")
 
     if "messages" not in st.session_state:
@@ -72,12 +76,7 @@ if client:
         st.chat_message("user").write(prompt)
 
         source_information = get_search_result(prompt.lower(), collection)
-        combined_prompt = f"""Bạn là một trợ lý AI được đào tạo để trả lời các câu hỏi dựa trên các bài báo từ VnExpress. 
-        Câu hỏi của người dùng: {prompt}
-        Hãy trả lời câu hỏi dựa trên thông tin sau từ các bài báo liên quan: 
-        {source_information}
-        Nếu thông tin không đủ để trả lời câu hỏi, hãy nói rằng bạn không có đủ thông tin và đề nghị người dùng đặt câu hỏi khác hoặc cung cấp thêm ngữ cảnh.
-        Luôn trả lời bằng tiếng Việt và giữ giọng điệu thân thiện, chuyên nghiệp."""
+        combined_prompt = CHATBOT_PROMPT.format(user_question=prompt, source_information=source_information)
         print(combined_prompt)
 
         response = model.generate_content(combined_prompt)
