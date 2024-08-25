@@ -1,8 +1,7 @@
-streamlit>=1.28
-langchain>=0.0.217
-openai>=1.2
-duckduckgo-search
-anthropic>=0.3.0
-trubrics>=1.4.3
-streamlit-feedback
-langchain-community
+streamlit==1.24.0
+pymongo==4.3.3
+pandas==1.5.3
+requests==2.31.0
+beautifulsoup4==4.12.2
+sentence-transformers==2.2.2
+google-generativeai==0.3.0
