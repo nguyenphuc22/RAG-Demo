@@ -27,6 +27,9 @@ def get_embedding(text: str) -> list[float]:
     embedding = embedding_model.encode(text)
     return embedding.tolist()
 
+# Delete all documents in the collection
+collection.delete_many({})
+print("All documents deleted from the collection.")
 
 # Read the Excel file
 excel_file = 'vnexpress_articles.xlsx'  # Make sure this is the correct path to your file
@@ -39,13 +42,15 @@ df = pd.read_excel(excel_file)
 # Process each row and insert into MongoDB
 for index, row in df.iterrows():
     # Combine title and description for embedding
-    text_for_embedding = f"{row['title']} {row['description']}"
-
+    text_for_embedding = f"{row['title']} {row['date']} {row['content']}"
+    print(text_for_embedding)
     # Create the document to insert
     document = {
         "title": row['title'],
         "url": row['url'],
         "description": row['description'],
+        "content": row['content'],
+        "date": row['date'],
         "embedding": get_embedding(text_for_embedding)
     }
 

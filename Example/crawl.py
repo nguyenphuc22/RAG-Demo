@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import random
-
+from datetime import datetime
+import re
 
 class VnExpressExcelCrawler:
     def __init__(self, base_url='https://vnexpress.net/'):
@@ -28,11 +29,46 @@ class VnExpressExcelCrawler:
                 url = title_element.a['href']
                 description = article.find('p', class_='description')
                 description = description.text.strip() if description else ""
+
+                # Fetch full content and date
+                content, date = self.get_article_details(url)
+
                 self.articles.append({
                     'title': title,
                     'url': url,
-                    'description': description
+                    'description': description,
+                    'content': content,
+                    'date': date
                 })
+
+    def get_article_details(self, url):
+        html_content = self.get_page_content(url)
+        if not html_content:
+            return "", ""
+
+        soup = BeautifulSoup(html_content, 'html.parser')
+        # Extract content
+        content_element = soup.find('article', class_='fck_detail')
+        content = content_element.text.strip() if content_element else ""
+
+        # Extract date
+        date_span = soup.find('span', class_='date')
+        if date_span:
+            date_text = date_span.text.strip()
+            date_pattern = r'(\d{1,2}/\d{1,2}/\d{4})'
+            match = re.search(date_pattern, date_text)
+            if match:
+                date_str = match.group(1)
+                date_obj = datetime.strptime(date_str, '%d/%m/%Y')
+                print(f"Ngày đăng bài: {date_obj.strftime('%d/%m/%Y')}")
+            else:
+                print("Không tìm thấy ngày đăng bài")
+                date_obj = ""
+        else:
+            print("Không tìm thấy ngày đăng bài")
+            date_obj = ""
+
+        return content, date_obj.strftime('%d/%m/%Y')
 
     def crawl(self, max_articles=50, delay_range=(1, 3)):
         html_content = self.get_page_content(self.base_url)
@@ -62,6 +98,7 @@ class VnExpressExcelCrawler:
         df = pd.DataFrame(self.articles)
         df.to_excel(filename, index=False)
         print(f"Saved {len(self.articles)} articles to {filename}")
+        return df
 
 
 if __name__ == "__main__":
