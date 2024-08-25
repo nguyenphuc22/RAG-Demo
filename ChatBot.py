@@ -19,7 +19,7 @@ mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", typ
 max_articles = st.sidebar.number_input("Maximum number of articles to crawl", min_value=1, max_value=100, value=20)
 client = init_mongodb_connection(mongo_connection_string)
 db_name = "sample_mflix"
-collection_name = "vien_articles" # Cái này tui tạo cho mọi người từng cái collect riêng nhé, đừng dùng chung.
+collection_name = "articles" # Cái này tui tạo cho mọi người từng cái collect riêng nhé, đừng dùng chung.
 
 crawler_options = {
     "VnExpress": VnExpressExcelCrawler,
