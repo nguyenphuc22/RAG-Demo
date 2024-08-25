@@ -70,6 +70,7 @@ class VnExpressExcelCrawler:
         df = pd.DataFrame(self.articles)
         df.to_excel(filename, index=False)
         print(f"Saved {len(self.articles)} articles to {filename}")
+        return df
 
 
 # MongoDB connection
@@ -152,12 +153,32 @@ if client:
         return list(results)
 
 
+    def create_vector_and_update_mongodb(df):
+        for _, row in df.iterrows():
+            text_for_embedding = f"{row['title']} {row['description']}"
+            embedding = get_embedding(text_for_embedding)
+
+            document = {
+                "title": row['title'],
+                "url": row['url'],
+                "description": row['description'],
+                "embedding": embedding
+            }
+
+            collection.insert_one(document)
+
+        st.success(f"Successfully added {len(df)} new articles to MongoDB with vector embeddings.")
+
+
     if st.sidebar.button("Crawl New Articles"):
         crawler = VnExpressExcelCrawler()
         with st.spinner('Crawling new articles...'):
             crawler.crawl(max_articles=20)  # Crawl 20 bài viết mới
-            crawler.save_to_excel()
+            df = crawler.save_to_excel()
         st.sidebar.success("Crawling completed!")
+
+        with st.spinner('Creating vector embeddings and updating MongoDB...'):
+            create_vector_and_update_mongodb(df)
 
     def get_search_result(query, collection):
         get_knowledge = vector_search(query, collection, 5)
