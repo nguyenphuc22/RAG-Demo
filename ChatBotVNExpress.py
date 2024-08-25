@@ -12,6 +12,7 @@ import random
 st.sidebar.title("Configuration")
 gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
 mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", type="password")
+max_articles = st.sidebar.number_input("Maximum number of articles to crawl", min_value=1, max_value=100, value=20)
 
 class VnExpressExcelCrawler:
     def __init__(self, base_url='https://vnexpress.net/'):
@@ -172,8 +173,8 @@ if client:
 
     if st.sidebar.button("Crawl New Articles"):
         crawler = VnExpressExcelCrawler()
-        with st.spinner('Crawling new articles...'):
-            crawler.crawl(max_articles=20)  # Crawl 20 bài viết mới
+        with st.spinner(f'Crawling up to {max_articles} new articles...'):
+            crawler.crawl(max_articles=max_articles)  # Use the user-defined max_articles
             df = crawler.save_to_excel()
         st.sidebar.success("Crawling completed!")
 
