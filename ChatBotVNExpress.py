@@ -2,11 +2,75 @@ import streamlit as st
 import pymongo
 import google.generativeai as genai
 from sentence_transformers import SentenceTransformer
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+import random
 
 # Streamlit interface for API keys and connection string
 st.sidebar.title("Configuration")
 gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
 mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", type="password")
+
+class VnExpressExcelCrawler:
+    def __init__(self, base_url='https://vnexpress.net/'):
+        self.base_url = base_url
+        self.articles = []
+
+    def get_page_content(self, url):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            return response.text
+        except requests.RequestException as e:
+            print(f"Error fetching {url}: {e}")
+            return None
+
+    def parse_articles(self, html_content):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        for article in soup.find_all('article', class_='item-news'):
+            title_element = article.find('h3', class_='title-news')
+            if title_element and title_element.a:
+                title = title_element.a.text.strip()
+                url = title_element.a['href']
+                description = article.find('p', class_='description')
+                description = description.text.strip() if description else ""
+                self.articles.append({
+                    'title': title,
+                    'url': url,
+                    'description': description
+                })
+
+    def crawl(self, max_articles=50, delay_range=(1, 3)):
+        html_content = self.get_page_content(self.base_url)
+        if not html_content:
+            return
+
+        self.parse_articles(html_content)
+
+        while len(self.articles) < max_articles:
+            time.sleep(random.uniform(*delay_range))
+            next_page = self.find_next_page(html_content)
+            if not next_page:
+                break
+            html_content = self.get_page_content(next_page)
+            if not html_content:
+                break
+            self.parse_articles(html_content)
+
+        self.articles = self.articles[:max_articles]
+
+    def find_next_page(self, html_content):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        next_page_link = soup.find('a', class_='next-page')
+        return next_page_link['href'] if next_page_link else None
+
+    def save_to_excel(self, filename='vnexpress_articles.xlsx'):
+        df = pd.DataFrame(self.articles)
+        df.to_excel(filename, index=False)
+        print(f"Saved {len(self.articles)} articles to {filename}")
+
 
 # MongoDB connection
 @st.cache_resource
@@ -87,6 +151,14 @@ if client:
         results = collection.aggregate(pipeline)
         return list(results)
 
+
+    if st.sidebar.button("Crawl New Articles"):
+        crawler = VnExpressExcelCrawler()
+        with st.spinner('Crawling new articles...'):
+            crawler.crawl(max_articles=20)  # Crawl 20 bài viết mới
+            crawler.save_to_excel()
+        st.sidebar.success("Crawling completed!")
+
     def get_search_result(query, collection):
         get_knowledge = vector_search(query, collection, 5)
         print("get_knowledge")
@@ -95,7 +167,7 @@ if client:
         for i, result in enumerate(get_knowledge, 1):
             search_result += f"\n{i}) Title: {result.get('title', 'N/A')}"
             search_result += f"\nURL: {result.get('url', 'N/A')}"
-            search_result += f"\nDescription: {result.get('description', 'N/A')[:200]}..."  # Limit description length
+            search_result += f"\nDescription: {result.get('description', 'N/A')[:200]}..."
             search_result += "\n\n"
         return search_result
 
