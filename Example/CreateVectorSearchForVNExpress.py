@@ -32,7 +32,7 @@ collection.delete_many({})
 print("All documents deleted from the collection.")
 
 # Read the Excel file
-excel_file = 'vnexpress_articles.xlsx'  # Make sure this is the correct path to your file
+excel_file = '../vnexpress_articles.xlsx'  # Make sure this is the correct path to your file
 if not os.path.exists(excel_file):
     print(f"Error: File {excel_file} not found.")
     exit(1)

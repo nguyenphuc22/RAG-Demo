@@ -5,7 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Gemini-RAG" />
       <excludeFolder url="file://$MODULE_DIR$/RAG-Demo" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.11 (RAG-Demo)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.11 (RAG-Demo) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -1,108 +1,48 @@
 import streamlit as st
-import pymongo
 import google.generativeai as genai
-from sentence_transformers import SentenceTransformer
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import time
-import random
+from data.mongodb_client import init_mongodb_connection, get_collection
+from database.NewsCrawlerInterface import NewsCrawlerInterface
+from database.baophapluat import BaoPhapLuatExcelCrawler
+from database.dantri import DanTriExcelCrawler
+from database.thanhnien_crawler import ThanhNienExcelCrawler
+from database.thuvienphapluat import ThuVienPhapLuatExcelCrawler
+from database.tuoitre_crawler import TuoiTreExcelCrawler
+from database.vnexpress_crawler import VnExpressExcelCrawler
+from embedding.embedding_model import load_embedding_model
+from search.vector_search import get_search_result, create_vector_and_update_mongodb
 
 # Streamlit interface for API keys and connection string
 st.sidebar.title("Configuration")
 gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
 mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", type="password")
 max_articles = st.sidebar.number_input("Maximum number of articles to crawl", min_value=1, max_value=100, value=20)
-
-class VnExpressExcelCrawler:
-    def __init__(self, base_url='https://vnexpress.net/'):
-        self.base_url = base_url
-        self.articles = []
-
-    def get_page_content(self, url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            return response.text
-        except requests.RequestException as e:
-            print(f"Error fetching {url}: {e}")
-            return None
-
-    def parse_articles(self, html_content):
-        soup = BeautifulSoup(html_content, 'html.parser')
-        for article in soup.find_all('article', class_='item-news'):
-            title_element = article.find('h3', class_='title-news')
-            if title_element and title_element.a:
-                title = title_element.a.text.strip()
-                url = title_element.a['href']
-                description = article.find('p', class_='description')
-                description = description.text.strip() if description else ""
-                self.articles.append({
-                    'title': title,
-                    'url': url,
-                    'description': description
-                })
-
-    def crawl(self, max_articles=50, delay_range=(1, 3)):
-        html_content = self.get_page_content(self.base_url)
-        if not html_content:
-            return
-
-        self.parse_articles(html_content)
-
-        while len(self.articles) < max_articles:
-            time.sleep(random.uniform(*delay_range))
-            next_page = self.find_next_page(html_content)
-            if not next_page:
-                break
-            html_content = self.get_page_content(next_page)
-            if not html_content:
-                break
-            self.parse_articles(html_content)
-
-        self.articles = self.articles[:max_articles]
-
-    def find_next_page(self, html_content):
-        soup = BeautifulSoup(html_content, 'html.parser')
-        next_page_link = soup.find('a', class_='next-page')
-        return next_page_link['href'] if next_page_link else None
-
-    def save_to_excel(self, filename='vnexpress_articles.xlsx'):
-        df = pd.DataFrame(self.articles)
-        df.to_excel(filename, index=False)
-        print(f"Saved {len(self.articles)} articles to {filename}")
-        return df
-
-
-# MongoDB connection
-@st.cache_resource
-def init_mongodb_connection(connection_string):
-    if not connection_string:
-        st.error("Please provide a MongoDB connection string.")
-        return None
-    try:
-        client = pymongo.MongoClient(connection_string)
-        client.admin.command('ping')
-        st.sidebar.success("Successfully connected to MongoDB!")
-        return client
-    except Exception as e:
-        st.sidebar.error(f"Failed to connect to MongoDB: {e}")
-        return None
-
 client = init_mongodb_connection(mongo_connection_string)
 
-if client:
-    db = client["sample_mflix"]
-    collection = db['vnexpress_articles']
+crawler_options = {
+    "VnExpress": VnExpressExcelCrawler,
+    "Tuổi Trẻ": TuoiTreExcelCrawler,
+    "Thanh Niên": ThanhNienExcelCrawler,
+    "Dân Trí": DanTriExcelCrawler,
+    "Báo Pháp Luật": BaoPhapLuatExcelCrawler,
+    "Thư Viện Pháp Luật": ThuVienPhapLuatExcelCrawler
+}
+selected_crawler = st.sidebar.selectbox("Select Crawler", list(crawler_options.keys()))
 
+def crawl_and_update(crawler: NewsCrawlerInterface, max_articles: int):
+    with st.spinner(f'Crawling up to {max_articles} new articles...'):
+        crawler.crawl(max_articles=max_articles)
+        df = crawler.save_to_excel("articles.xlsx")
+    st.sidebar.success("Crawling completed!")
+
+    with st.spinner('Creating vector embeddings and updating MongoDB...'):
+        collection.delete_many({})
+        print("All documents deleted from the collection.")
+        create_vector_and_update_mongodb(df,collection)
+
+if client:
+    collection = get_collection(client, "sample_mflix", "vnexpress_articles")
     print(f"Number of documents in collection: {collection.count_documents({})}")
     print("Indexes:", collection.index_information())
-
-    # Load the embedding model
-    @st.cache_resource
-    def load_embedding_model():
-        return SentenceTransformer("sentence-transformers/all-MiniLM-L12-v2")
-
     embedding_model = load_embedding_model()
 
     # Gemini setup
@@ -113,85 +53,10 @@ if client:
         st.error("Please provide a Gemini API key.")
         st.stop()
 
-    def get_embedding(text: str) -> list[float]:
-        if not text.strip():
-            print("Attempted to get embedding for empty text.")
-            return []
-        embedding = embedding_model.encode(text)
-        return embedding.tolist()
-
-    def vector_search(user_query, collection, limit=4):
-        query_embedding = get_embedding(user_query)
-        if not query_embedding:
-            return "Invalid query or embedding generation failed."
-
-        vector_search_stage = {
-            "$vectorSearch": {
-                "index": "vector_index",
-                "queryVector": query_embedding,
-                "path": "embedding",
-                "numCandidates": 400,
-                "limit": limit,
-            }
-        }
-
-        unset_stage = {"$unset": "embedding"}
-
-        project_stage = {
-            "$project": {
-                "_id": 0,
-                "title": 1,
-                "url": 1,
-                "description": 1,
-                "score": {
-                    "$meta": "vectorSearchScore"
-                }
-            }
-        }
-
-        pipeline = [vector_search_stage, unset_stage, project_stage]
-        results = collection.aggregate(pipeline)
-        return list(results)
-
-
-    def create_vector_and_update_mongodb(df):
-        for _, row in df.iterrows():
-            text_for_embedding = f"{row['title']} {row['description']}"
-            embedding = get_embedding(text_for_embedding)
-
-            document = {
-                "title": row['title'],
-                "url": row['url'],
-                "description": row['description'],
-                "embedding": embedding
-            }
-
-            collection.insert_one(document)
-
-        st.success(f"Successfully added {len(df)} new articles to MongoDB with vector embeddings.")
-
-
     if st.sidebar.button("Crawl New Articles"):
-        crawler = VnExpressExcelCrawler()
-        with st.spinner(f'Crawling up to {max_articles} new articles...'):
-            crawler.crawl(max_articles=max_articles)  # Use the user-defined max_articles
-            df = crawler.save_to_excel()
-        st.sidebar.success("Crawling completed!")
-
-        with st.spinner('Creating vector embeddings and updating MongoDB...'):
-            create_vector_and_update_mongodb(df)
-
-    def get_search_result(query, collection):
-        get_knowledge = vector_search(query, collection, 5)
-        print("get_knowledge")
-        print(get_knowledge)
-        search_result = ""
-        for i, result in enumerate(get_knowledge, 1):
-            search_result += f"\n{i}) Title: {result.get('title', 'N/A')}"
-            search_result += f"\nURL: {result.get('url', 'N/A')}"
-            search_result += f"\nDescription: {result.get('description', 'N/A')[:200]}..."
-            search_result += "\n\n"
-        return search_result
+        crawler_class = crawler_options[selected_crawler]
+        crawler = crawler_class()
+        crawl_and_update(crawler, max_articles)
 
     st.title("💬 VnExpress RAG Chatbot")
     st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using VnExpress articles")
