@@ -10,6 +10,7 @@ from database.tuoitre_crawler import TuoiTreExcelCrawler
 from database.vnexpress_crawler import VnExpressExcelCrawler
 from database.vtv_crawler import VTVExcelCrawler
 from embedding.embedding_model import load_embedding_model
+from prompts.history import update_prompt_with_history
 from prompts.prompt import CHATBOT_PROMPT
 from search.vector_search import get_search_result, create_vector_and_update_mongodb
 
@@ -20,7 +21,7 @@ mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", typ
 max_articles = st.sidebar.number_input("Maximum number of articles to crawl", min_value=1, max_value=100, value=20)
 client = init_mongodb_connection(mongo_connection_string)
 db_name = "sample_mflix"
-collection_name = "articles" # Cái này tui tạo cho mọi người từng cái collect riêng nhé, đừng dùng chung.
+collection_name = "vnexpress_articles"
 
 crawler_options = {
     "VnExpress": VnExpressExcelCrawler,
@@ -42,7 +43,7 @@ def crawl_and_update(crawler: NewsCrawlerInterface, max_articles: int):
     with st.spinner('Creating vector embeddings and updating MongoDB...'):
         collection.delete_many({})
         print("All documents deleted from the collection.")
-        create_vector_and_update_mongodb(df,collection)
+        create_vector_and_update_mongodb(df, collection)
 
 if client:
     collection = get_collection(client, db_name, collection_name)
@@ -53,9 +54,9 @@ if client:
     # Gemini setup
     if gemini_api_key:
         genai.configure(api_key=gemini_api_key)
-        model = genai.GenerativeModel('gemini-1.5-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash')
     else:
-        st.error("Please provide a Gemini API key.")
+        st.error("Please provide a valid Gemini API key.")
         st.stop()
 
     if st.sidebar.button("Crawl New Articles"):
@@ -64,11 +65,11 @@ if client:
         crawler = crawler_class()
         crawl_and_update(crawler, max_articles)
 
-    st.title("💬 RAG Chatbot")
-    st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using VnExpress articles")
+    st.title("💬 Hybrid Search RAG Chatbot")
+    st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Hybrid Search (Vector + Keyword) with RRF")
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": "Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ VnExpress?"}]
+        st.session_state["messages"] = [{"role": "assistant", "content": "Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ các nguồn tin tức Việt Nam?"}]
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
@@ -78,7 +79,7 @@ if client:
         st.chat_message("user").write(prompt)
 
         source_information = get_search_result(prompt.lower(), collection)
-        combined_prompt = CHATBOT_PROMPT.format(user_question=prompt, source_information=source_information)
+        combined_prompt = update_prompt_with_history(CHATBOT_PROMPT, prompt, source_information)
         print(combined_prompt)
 
         response = model.generate_content(combined_prompt)
@@ -87,6 +88,6 @@ if client:
         st.chat_message("assistant").write(msg)
 
     st.sidebar.title("Giới thiệu")
-    st.sidebar.info("Chatbot này sử dụng RAG với MongoDB và Gemini để cung cấp thông tin từ các bài báo VnExpress.")
+    st.sidebar.info("Chatbot này sử dụng Hybrid Search (Vector + Keyword) với RRF, MongoDB và Gemini để cung cấp thông tin từ các bài báo từ nhiều nguồn tin tức Việt Nam.")
 else:
     st.error("Please configure MongoDB connection to continue.")

@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def get_conversation_history(max_tokens=1000):
+def get_conversation_history(max_tokens=500):
     history = ""
     token_count = 0
     for message in reversed(st.session_state.messages[:-1]):  # Exclude the last message
@@ -9,7 +9,7 @@ def get_conversation_history(max_tokens=1000):
         role = "Human: " if message["role"] == "user" else "Assistant: "
         message_text = f"{role}{content}\n"
         message_tokens = len(message_text.split())
-
+        # print token_count + message_tokens
         if token_count + message_tokens > max_tokens:
             break
 
