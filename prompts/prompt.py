@@ -16,3 +16,12 @@ Hướng dẫn:
 6. Luôn trích dẫn nguồn thông tin bằng cách đề cập đến tiêu đề bài báo.
 
 Hãy trả lời bằng tiếng Việt một cách rõ ràng và súc tích."""
+
+
+CHATBOT_QUESTION = '''
+Bạn là trợ lý AI để đặt câu hỏi từ thông tin được cung cấp sau đây không cần ghi chú thích câu hỏi,
+những câu hỏi đơn giản không quá phức tạp và câu trả lời phải nằm trong thông tin đã cung cấp.
+Hãy đặt 5 câu hỏi liên quan đển thông tin không cần lặp lại câu gợi ý này, thêm dấu "?" ở cuối mỗi câu hỏi
+và không cần đánh số thứ sự:
+{information} 
+'''
