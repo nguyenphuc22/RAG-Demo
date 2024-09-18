@@ -13,6 +13,7 @@ from embedding.embedding_model import load_embedding_model
 from prompts.history import update_prompt_with_history
 from prompts.prompt import CHATBOT_PROMPT
 from search.vector_search import get_search_result, create_vector_and_update_mongodb
+from evalution.question import evaluation
 
 # Streamlit interface for API keys and connection string
 st.sidebar.title("Configuration")
@@ -64,7 +65,9 @@ if client:
         crawler_class = crawler_options[selected_crawler]
         crawler = crawler_class()
         crawl_and_update(crawler, max_articles)
-
+    if st.sidebar.button("Evaluate"):
+        result = evaluation(collection, model)
+        st.sidebar.write(f"Kết quả sau khi đánh giá: {round(result*100, 2)} %")
     st.title("💬 Hybrid Search RAG Chatbot")
     st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Hybrid Search (Vector + Keyword) with RRF")
 
