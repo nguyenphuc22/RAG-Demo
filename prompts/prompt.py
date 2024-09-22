@@ -19,9 +19,17 @@ Hãy trả lời bằng tiếng Việt một cách rõ ràng và súc tích."""
 
 
 CHATBOT_QUESTION = '''
-Bạn là trợ lý AI để đặt câu hỏi từ thông tin được cung cấp sau đây không cần ghi chú thích câu hỏi,
-những câu hỏi đơn giản không quá phức tạp và câu trả lời phải nằm trong thông tin đã cung cấp.
-Hãy đặt 5 câu hỏi liên quan đển thông tin không cần lặp lại câu gợi ý này, thêm dấu "?" ở cuối mỗi câu hỏi
-và không cần đánh số thứ sự:
+Bạn là trợ lý AI để đặt câu hỏi từ thông tin được cung cấp, 
+Hãy tạo cho bộ {number_of_question} câu hỏi và câu trả lời liên quan đến thông tin được cung cấp trong bối cảnh là một mẩu nhỏ của một cơ sở dữ liệu rất lớn. 
+Các câu hỏi cần được xây dựng sao cho có thể truy xuất đến thông tin cụ thể trong cơ sở dữ liệu, và phải có tính chi tiết, có khả năng xác định vị trí thông tin trong database.
+
+Đầu ra cần theo định dạng:
+
+Q: "Câu hỏi liên quan đến bối cảnh cụ thể" 
+A: "Câu trả lời phù hợp với bối cảnh"
+
+Hãy đảm bảo rằng các câu hỏi có tính chi tiết, liên quan trực tiếp đến thông tin được cung cấp,
+và cung cấp đủ thông tin để truy tìm chính xác thông tin trong một cơ sở dữ liệu phức tạp.
+Không cần đánh số thứ tự câu hỏi và không cần thêm bất kỳ định dạng văn bản nào trong câu hỏi và câu trả lời.
 {information} 
 '''
