@@ -33,3 +33,24 @@ và cung cấp đủ thông tin để truy tìm chính xác thông tin trong m�
 Không cần đánh số thứ tự câu hỏi và không cần thêm bất kỳ định dạng văn bản nào trong câu hỏi và câu trả lời.
 {information} 
 '''
+
+CHATBOT_EVALUATE = """
+Bạn đang đóng vai trò là một bộ kiểm thử thông tin. Tôi sẽ cung cấp cho bạn các thông tin sau:
+
+- Q: "{question}"  
+- A_expected: "{expected_answer}"  
+- A_received: "{received_answer}"
+
+Nhiệm vụ của bạn là **đánh giá sự phù hợp của A_received dựa trên câu hỏi Q** và so sánh với A_expected. Bạn cần đánh giá dựa trên nội dung, không phụ thuộc vào cách diễn đạt, chỉ cần đảm bảo rằng câu trả lời có phản ánh đúng nội dung yêu cầu của câu hỏi.
+
+Hãy trả lời ngắn gọn theo một trong các kết quả sau:
+
+- TRUE: nếu A_received phù hợp và trả lời chính xác nội dung yêu cầu của câu hỏi Q so với A_expected.
+- FALSE: nếu A_received có ý định trả lời câu hỏi Q nhưng thông tin không khớp với A_expected.
+- NOT GIVEN: nếu A_received từ chối trả lời câu hỏi hoặc cho biết không biết, không đủ thông tin để trả lời hoặc chỉ cung cấp các thông tin khác mà không liên quan trực tiếp đến câu hỏi Q.
+
+Lưu ý: Bạn chỉ được trả lời ngắn gọn với một trong ba kết quả trên mà không giải thích gì thêm và không tạo thêm định dạng.
+"""
+
+
+

@@ -1,6 +1,6 @@
 import streamlit as st
 from collections import defaultdict
-from prompts.prompt import CHATBOT_QUESTION, CHATBOT_PROMPT
+from prompts.prompt import CHATBOT_QUESTION, CHATBOT_PROMPT, CHATBOT_EVALUATE
 from search.vector_search import get_search_result
 from prompts.history import update_prompt_with_history
 from transformers import AutoModel, AutoTokenizer, pipeline
@@ -18,7 +18,7 @@ import sys
 
 ###### CONFIGURATION ######
 NUMBER_OF_ARTICLE = 20
-NUMBER_OF_QUESTION = 10
+NUMBER_OF_QUESTION = 5
 
 phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 phobert_model = AutoModel.from_pretrained("vinai/phobert-base")
@@ -89,6 +89,12 @@ def ask_question(collection, model, number_of_article, progress_ask):
         progress_ask.progress((id+1)/(number_of_article))
     return all_question
 
+def evaluate_answers(model, question, expected_answer, received_answer):
+    combined_prompt = CHATBOT_EVALUATE.format(
+        question=question, expected_answer=expected_answer, received_answer=received_answer)
+    response = model.generate_content(combined_prompt, safety_settings=safety_settings)
+    return response.text.strip()
+
 
 def get_embedding(text, max_length=256):
     inputs = phobert_tokenizer(text, return_tensors='pt',
@@ -118,12 +124,12 @@ def evaluation(collection, model):
     log_file = open('output.log', 'w', encoding='utf-8')
     sys.stdout = log_file 
     st.session_state.messages = []
-    st.write("Evaluating the chatbot...")
-    st.write("Progress of retrieving articles and generating questions:")
+    st.write("Đang đánh giá chatbot...")
+    st.write("Tiến trình truy xuất các bài báo và sinh câu hỏi:")
     progress_ask = st.progress(0)
-    st.write("Progress of answering questions:")
+    st.write("Tiến trình trả lời câu hỏi:")
     progress_answer = st.progress(0)
-    st.write("Progress of evaluating the chatbot:")
+    st.write("Tiến trình đánh giá câu trả lời:")
     progress_eval = st.progress(0)
 
     # asking questions
@@ -131,38 +137,56 @@ def evaluation(collection, model):
     # answering questions
     all_qa_data = answers(all_qa_data, model, collection, progress_answer)
     # evaluating the chatbot
+    columns = ['title', 'url', 'question', 'expected_answer', 'received_answer', 
+           'phobert_cossim', 'bert_cossim', 'roberta_nli', 'factbert_nli', 'chatbot_result']
+    article_df = pd.DataFrame(columns=columns)
     len_of_answer = NUMBER_OF_ARTICLE * NUMBER_OF_QUESTION
     for art_idx, article in enumerate(all_qa_data):
+        title = article['title']
+        url = article['url']
         for q_idx, qa in enumerate(article['qa_pairs']):
+            question = qa['question'][3:]
             expected_answer = qa['expected_answer'][3:]
             received_answer = qa['received_answer']
+            
             phobert_results = cosine_score(expected_answer, received_answer)
             bertemb_results = util.cos_sim(bertemb_model.encode(expected_answer), bertemb_model.encode(received_answer))
             nli_roberta_results = nli_roberta_model(f"premise: {expected_answer} hypothesis: {received_answer}")
             nli_factbert_results = nli_factbert_model(f"premise: {expected_answer} hypothesis: {received_answer}")
-            qa['cossim1_phobert'] = phobert_results
-            qa['cossim2_bert'] = bertemb_results
-            qa['nli1_roberta'] = nli_roberta_results
-            qa['nli2_factbert'] = nli_factbert_results
+            time.sleep(2)            
+            chatbot_result = evaluate_answers(model, question, expected_answer, received_answer)            
+            # Append the results directly to the DataFrame
+            article_df = article_df.append({
+                'title': title,
+                'url': url,
+                'question': question,
+                'expected_answer': expected_answer,
+                'received_answer': received_answer,
+                'phobert_cossim': phobert_results[0][0],
+                'bert_cossim': bertemb_results[0][0],
+                'roberta_nli': nli_roberta_results[0]['label'],
+                'factbert_nli': nli_factbert_results[0]['label'],
+                'chatbot_result': chatbot_result
+            }, ignore_index=True)
             progress_eval.progress((art_idx*NUMBER_OF_QUESTION + q_idx + 1) / len_of_answer)
-                    
-    # saving to excel  
-    data = []  
-    for article_dict in all_qa_data:
-        title = article_dict['title']
-        url = article_dict['url']             
-        for qa in article_dict['qa_pairs']:
-            question = qa['question'][3:]
-            expected_answer = qa['expected_answer'][3:]
-            received_answer = qa['received_answer']
-            cossim1_phobert = qa['cossim1_phobert']
-            cossim2_bert = qa['cossim2_bert']
-            nli1_roberta = qa['nli1_roberta']
-            nli2_factbert = qa['nli2_factbert']
-            data.append([title, url, question, expected_answer, received_answer, cossim1_phobert, cossim2_bert, nli1_roberta, nli2_factbert])                
-    article_df = pd.DataFrame(data, columns=['title', 'url', 'question', 'expected_answer', 'received_answer', 'phobert_cossim', 'bert_cossim', 'roberta_nli', 'factbert_nli'])
+   
     article_df.to_excel('evaluate.xlsx', index=False)
-    average_score = article_df['bert_cossim'].mean()
     sys.stdout = sys.__stdout__
     log_file.close()     
-    return average_score
+    
+    # Display the summary table grouped by 'chatbot_result'
+    total_rows = len(article_df)
+    true_count = article_df[article_df['chatbot_result'] == "TRUE"].shape[0]
+    true_percentage = (true_count / total_rows) * 100
+    st.write(f"Phần trăm kết quả đúng theo 'chatbot_result': {true_percentage:.2f}%")
+    category_count = article_df.groupby('chatbot_result').size().reset_index(name='count')
+    summary_table = article_df.groupby('chatbot_result').agg({
+        'phobert_cossim': 'mean',
+        'bert_cossim': 'mean',
+        'roberta_nli': lambda x: x.value_counts().to_dict(),
+        'factbert_nli': lambda x: x.value_counts().to_dict(),
+    }).reset_index()
+    summary_table = pd.merge(category_count, summary_table, on='chatbot_result')
+    st.write("Bảng tóm tắt kết quả theo 'chatbot_result'")
+    st.dataframe(summary_table)
+    return true_percentage
