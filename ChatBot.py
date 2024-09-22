@@ -12,7 +12,7 @@ from database.vtv_crawler import VTVExcelCrawler
 from embedding.embedding_model import load_embedding_model
 from prompts.history import update_prompt_with_history
 from prompts.prompt import CHATBOT_PROMPT
-from search.vector_search import get_search_result, create_vector_and_update_mongodb
+from search.vector_search import get_search_result, create_vector_and_update_mongodb, preprocess_text
 
 # Streamlit interface for API keys and connection string
 st.sidebar.title("Configuration")
@@ -21,7 +21,8 @@ mongo_connection_string = st.sidebar.text_input("MongoDB Connection String", typ
 max_articles = st.sidebar.number_input("Maximum number of articles to crawl", min_value=1, max_value=100, value=20)
 client = init_mongodb_connection(mongo_connection_string)
 db_name = "sample_mflix"
-collection_name = "vnexpress_articles"
+collection_name = "minh_articles"
+# collection_name = "minh_articles"
 
 crawler_options = {
     "VnExpress": VnExpressExcelCrawler,
@@ -54,7 +55,7 @@ if client:
     # Gemini setup
     if gemini_api_key:
         genai.configure(api_key=gemini_api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-1.5-pro')
     else:
         st.error("Please provide a valid Gemini API key.")
         st.stop()
@@ -65,8 +66,8 @@ if client:
         crawler = crawler_class()
         crawl_and_update(crawler, max_articles)
 
-    st.title("💬 Hybrid Search RAG Chatbot")
-    st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Hybrid Search (Vector + Keyword) with RRF")
+    st.title("💬 Improved Hybrid Search RAG Chatbot")
+    st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Enhanced Hybrid Search with Semantic Reranking")
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ các nguồn tin tức Việt Nam?"}]
@@ -78,16 +79,22 @@ if client:
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
 
-        source_information = get_search_result(prompt.lower(), collection)
+        preprocessed_prompt = preprocess_text(prompt)
+        source_information = get_search_result(preprocessed_prompt, collection)
         combined_prompt = update_prompt_with_history(CHATBOT_PROMPT, prompt, source_information)
         print(combined_prompt)
 
-        response = model.generate_content(combined_prompt)
-        msg = response.text
+        try:
+            response = model.generate_content(combined_prompt)
+            msg = response.text
+        except Exception as e:
+            msg = f"Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn: {str(e)}"
+
         st.session_state.messages.append({"role": "assistant", "content": msg})
         st.chat_message("assistant").write(msg)
 
     st.sidebar.title("Giới thiệu")
-    st.sidebar.info("Chatbot này sử dụng Hybrid Search (Vector + Keyword) với RRF, MongoDB và Gemini để cung cấp thông tin từ các bài báo từ nhiều nguồn tin tức Việt Nam.")
+    st.sidebar.info("Chatbot này sử dụng Hybrid Search cải tiến với Semantic Reranking, MongoDB và Gemini để cung cấp thông tin từ các bài báo từ nhiều nguồn tin tức Việt Nam.")
+
 else:
     st.error("Please configure MongoDB connection to continue.")
