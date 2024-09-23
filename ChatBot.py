@@ -67,7 +67,7 @@ if client:
         crawl_and_update(crawler, max_articles)
     if st.sidebar.button("Evaluate"):
         result = evaluation(collection, model)
-        st.sidebar.write(f"Kết quả sau khi đánh giá: {round(result*100, 2)} %")
+        st.sidebar.write(f"Kết quả sau khi đánh giá: {round(result, 2)} %")
     st.title("💬 Hybrid Search RAG Chatbot")
     st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Hybrid Search (Vector + Keyword) with RRF")
 
