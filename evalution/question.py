@@ -96,20 +96,27 @@ def evaluate_answers(model, question, expected_answer, received_answer):
     return response.text.strip()
 
 
-def get_embedding(text, max_length=256):
-    inputs = phobert_tokenizer(text, return_tensors='pt',
-                       padding=True, truncation=True, max_length=max_length)
-    input_ids = inputs['input_ids'].to(device)
+def get_embedding(text):
+    # Tokenize the text into chunks of 256 tokens
+    tokens = phobert_tokenizer.encode(text, truncation=False)
+    chunks = [tokens[i:i + 256] for i in range(0, len(tokens), 256)]
     embeddings = []
-    if input_ids.size(1) <= 256:
-        split_input_ids = [input_ids]
-    else:
-        split_input_ids = torch.split(input_ids, 256, dim=1)
-    for split_token in split_input_ids:
+    for chunk in chunks:
+        input_ids = torch.tensor(chunk).unsqueeze(0).to(device)
+        attention_mask = torch.ones(input_ids.size()).to(device)
         with torch.no_grad():
-            output = phobert_model(split_token)
-        embeddings.append(output.last_hidden_state[:, 0, :].cpu().numpy())
-    average_embedding = sum(embeddings) / len(embeddings)
+            output = phobert_model(input_ids, attention_mask=attention_mask)
+        # Mean pooling
+        embeddings_chunk = output.last_hidden_state
+        mask = attention_mask.unsqueeze(-1).expand(embeddings_chunk.size()).float()
+        masked_embeddings = embeddings_chunk * mask
+        summed_embeddings = torch.sum(masked_embeddings, 1)
+        summed_mask = torch.clamp(mask.sum(1), min=1e-9)
+        mean_pooled = summed_embeddings / summed_mask
+        embeddings.append(mean_pooled.cpu().numpy())
+
+    # Average embeddings from all chunks
+    average_embedding = np.mean(embeddings, axis=0)
     return average_embedding
 
 
