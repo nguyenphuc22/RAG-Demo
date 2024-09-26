@@ -5,3 +5,6 @@ requests==2.31.0
 beautifulsoup4==4.12.2
 sentence-transformers==2.2.2
 google-generativeai==0.3.0
+underthesea==6.8.4
+openpyxl==3.1.5
+bert-score==0.3.13
