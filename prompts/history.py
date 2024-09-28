@@ -19,7 +19,7 @@ def get_conversation_history(max_tokens=1000):
     return history.strip()
 
 def update_prompt_with_history(prompt_template, user_question, source_information):
-    conversation_history = "" #get_conversation_history()
+    conversation_history = get_conversation_history()
     return prompt_template.format(
         conversation_history=conversation_history,
         user_question=preprocess_text(user_question),

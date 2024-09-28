@@ -14,6 +14,7 @@ from prompts.history import update_prompt_with_history
 from prompts.prompt import CHATBOT_PROMPT
 from evalution.question import evaluation
 from search.vector_search import get_search_result, create_vector_and_update_mongodb, preprocess_text
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 # Streamlit interface for API keys and connection string
 st.sidebar.title("Configuration")
@@ -34,7 +35,39 @@ crawler_options = {
     "Thư Viện Pháp Luật": ThuVienPhapLuatExcelCrawler,
     "VTV": VTVExcelCrawler
 }
+
+safety_settings = {
+    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+}
+
 selected_crawler = st.sidebar.selectbox("Select Crawler", list(crawler_options.keys()))
+
+def get_context_aware_query(current_query):
+    if len(st.session_state.messages) < 2:
+        return current_query
+
+    previous_query = st.session_state.messages[-2]["content"] if st.session_state.messages[-2]["role"] == "user" else ""
+    previous_response = st.session_state.messages[-1]["content"] if st.session_state.messages[-1]["role"] == "assistant" else ""
+
+    context_aware_query = f"""
+    Dựa trên cuộc hội thoại sau:
+    Câu hỏi trước: {previous_query}
+    Câu trả lời trước: {previous_response}
+    Câu hỏi hiện tại: {current_query}
+
+    Hãy tạo ra một câu hỏi mới kết hợp ngữ cảnh từ câu hỏi trước và câu hỏi hiện tại để tìm kiếm thông tin liên quan.
+    Chỉ đưa ra câu hỏi mới, không cần giải thích gì thêm.
+    """
+
+    try:
+        response = model.generate_content(context_aware_query)
+        return response.text.strip()
+    except Exception as e:
+        print(f"Lỗi khi tạo câu hỏi có ngữ cảnh: {str(e)}")
+        return current_query
 
 def crawl_and_update(crawler: NewsCrawlerInterface, max_articles: int):
     with st.spinner(f'Crawling up to {max_articles} new articles...'):
@@ -56,7 +89,7 @@ if client:
     # Gemini setup
     if gemini_api_key:
         genai.configure(api_key=gemini_api_key)
-        model = genai.GenerativeModel('gemini-1.5-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash')
     else:
         st.error("Please provide a valid Gemini API key.")
         st.stop()
@@ -82,13 +115,16 @@ if client:
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
 
-        preprocessed_prompt = preprocess_text(prompt)
+        context_aware_query = get_context_aware_query(prompt)
+        preprocessed_prompt = preprocess_text(context_aware_query)
+
         source_information = get_search_result(preprocessed_prompt, collection)
         combined_prompt = update_prompt_with_history(CHATBOT_PROMPT, prompt, source_information)
+        print(f"Context-aware query: {context_aware_query}")
         print(combined_prompt)
 
         try:
-            response = model.generate_content(combined_prompt)
+            response = model.generate_content(combined_prompt, safety_settings=safety_settings)
             msg = response.text
         except Exception as e:
             msg = f"Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn: {str(e)}"
