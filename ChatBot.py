@@ -24,7 +24,6 @@ max_articles = st.sidebar.number_input("Maximum number of articles to crawl", mi
 client = init_mongodb_connection(mongo_connection_string)
 db_name = "sample_mflix"
 collection_name = "minh_articles"
-# collection_name = "minh_articles"
 
 crawler_options = {
     "VnExpress": VnExpressExcelCrawler,
@@ -45,12 +44,14 @@ safety_settings = {
 
 selected_crawler = st.sidebar.selectbox("Select Crawler", list(crawler_options.keys()))
 
+
 def get_context_aware_query(current_query):
     if len(st.session_state.messages) < 2:
         return current_query
 
     previous_query = st.session_state.messages[-2]["content"] if st.session_state.messages[-2]["role"] == "user" else ""
-    previous_response = st.session_state.messages[-1]["content"] if st.session_state.messages[-1]["role"] == "assistant" else ""
+    previous_response = st.session_state.messages[-1]["content"] if st.session_state.messages[-1][
+                                                                        "role"] == "assistant" else ""
 
     context_aware_query = f"""
     Dựa trên cuộc hội thoại sau:
@@ -69,6 +70,7 @@ def get_context_aware_query(current_query):
         print(f"Lỗi khi tạo câu hỏi có ngữ cảnh: {str(e)}")
         return current_query
 
+
 def crawl_and_update(crawler: NewsCrawlerInterface, max_articles: int):
     with st.spinner(f'Crawling up to {max_articles} new articles...'):
         crawler.crawl(max_articles=max_articles)
@@ -79,6 +81,67 @@ def crawl_and_update(crawler: NewsCrawlerInterface, max_articles: int):
         collection.delete_many({})
         print("All documents deleted from the collection.")
         create_vector_and_update_mongodb(df, collection)
+
+
+def get_latest_articles(collection, limit=3):
+    """Lấy các bài viết mới nhất từ cơ sở dữ liệu."""
+    latest_articles = list(collection.find().sort("date", -1).limit(limit))
+    return latest_articles
+
+
+def generate_question_suggestions(model, articles, conversation_history):
+    """Tạo gợi ý câu hỏi dựa trên các bài viết mới nhất và lịch sử trò chuyện."""
+    if conversation_history.strip():
+        context = f"""
+        Dựa trên lịch sử trò chuyện sau đây, hãy đề xuất 3 câu hỏi mà người dùng có thể quan tâm:
+
+        Lịch sử trò chuyện:
+        {conversation_history}
+
+        Hãy đưa ra 3 câu hỏi gợi ý liên quan đến cuộc trò chuyện hiện tại. Chỉ liệt kê các câu hỏi, không cần thêm giải thích hay định dạng khác.
+        """
+    else:
+        context = f"""
+        Dựa trên các bài viết mới nhất sau đây, hãy đề xuất 3 câu hỏi mà người dùng có thể quan tâm:
+
+        Các bài viết mới nhất:
+        {', '.join([article['title'] for article in articles])}
+
+        Hãy đưa ra 3 câu hỏi gợi ý liên quan đến các chủ đề trong các bài viết mới. Chỉ liệt kê các câu hỏi, không cần thêm giải thích hay định dạng khác.
+        """
+
+    try:
+        response = model.generate_content(context, safety_settings=safety_settings)
+        suggestions = response.text.strip().split('\n')
+        return suggestions[:3]  # Đảm bảo chỉ trả về tối đa 3 gợi ý
+    except Exception as e:
+        print(f"Lỗi khi tạo gợi ý câu hỏi: {str(e)}")
+        return []
+
+
+def process_user_input(user_input, model, collection):
+    print(f"Processing user input: {user_input}")  # Debug print
+    st.session_state.messages.append({"role": "user", "content": user_input})
+
+    context_aware_query = get_context_aware_query(user_input)
+    preprocessed_prompt = preprocess_text(context_aware_query)
+
+    source_information = get_search_result(preprocessed_prompt, collection)
+    combined_prompt = update_prompt_with_history(CHATBOT_PROMPT, user_input, source_information)
+    print(f"Context-aware query: {context_aware_query}")
+    print(combined_prompt)
+
+    try:
+        response = model.generate_content(combined_prompt, safety_settings=safety_settings)
+        msg = response.text
+    except Exception as e:
+        msg = f"Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn: {str(e)}"
+
+    st.session_state.messages.append({"role": "assistant", "content": msg})
+
+def handle_suggestion_click(suggestion):
+    st.session_state.selected_question = suggestion
+    st.rerun()
 
 if client:
     collection = get_collection(client, db_name, collection_name)
@@ -102,38 +165,46 @@ if client:
     if st.sidebar.button("Evaluate"):
         result = evaluation(collection, model)
         st.sidebar.write(f"Kết quả sau khi đánh giá: {round(result, 2)} %")
+
     st.title("💬 Improved Hybrid Search RAG Chatbot")
-    st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Enhanced Hybrid Search with Semantic Reranking")
+    st.caption(
+        "🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Enhanced Hybrid Search with Semantic Reranking")
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": "Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ các nguồn tin tức Việt Nam?"}]
+        st.session_state.messages = [{"role": "assistant",
+                                      "content": "Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ các nguồn tin tức Việt Nam?"}]
 
+    if "selected_question" not in st.session_state:
+        st.session_state.selected_question = None
+
+    # Xử lý câu hỏi đã chọn từ lần chạy trước
+    if st.session_state.selected_question:
+        process_user_input(st.session_state.selected_question, model, collection)
+        st.session_state.selected_question = None  # Reset sau khi xử lý
+
+    # Hiển thị tất cả tin nhắn
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
 
+    # Thêm phần gợi ý câu hỏi
+    latest_articles = get_latest_articles(collection)
+    conversation_history = "\n".join([f"{msg['role']}: {msg['content']}" for msg in st.session_state.messages[-5:]])
+    question_suggestions = generate_question_suggestions(model, latest_articles, conversation_history)
+
+    if question_suggestions:
+        st.sidebar.subheader("Gợi ý câu hỏi:")
+        for i, suggestion in enumerate(question_suggestions):
+            print(f"Suggestion {i + 1}: {suggestion}")
+            st.sidebar.button(suggestion, key=f"suggestion_{i}", on_click=handle_suggestion_click, args=(suggestion,))
+
+
     if prompt := st.chat_input():
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        st.chat_message("user").write(prompt)
-
-        context_aware_query = get_context_aware_query(prompt)
-        preprocessed_prompt = preprocess_text(context_aware_query)
-
-        source_information = get_search_result(preprocessed_prompt, collection)
-        combined_prompt = update_prompt_with_history(CHATBOT_PROMPT, prompt, source_information)
-        print(f"Context-aware query: {context_aware_query}")
-        print(combined_prompt)
-
-        try:
-            response = model.generate_content(combined_prompt, safety_settings=safety_settings)
-            msg = response.text
-        except Exception as e:
-            msg = f"Xin lỗi, đã xảy ra lỗi khi xử lý yêu cầu của bạn: {str(e)}"
-
-        st.session_state.messages.append({"role": "assistant", "content": msg})
-        st.chat_message("assistant").write(msg)
+        process_user_input(prompt, model, collection)
+        st.rerun()
 
     st.sidebar.title("Giới thiệu")
-    st.sidebar.info("Chatbot này sử dụng Hybrid Search cải tiến với Semantic Reranking, MongoDB và Gemini để cung cấp thông tin từ các bài báo từ nhiều nguồn tin tức Việt Nam.")
+    st.sidebar.info(
+        "Chatbot này sử dụng Hybrid Search cải tiến với Semantic Reranking, MongoDB và Gemini để cung cấp thông tin từ các bài báo từ nhiều nguồn tin tức Việt Nam.")
 
 else:
     st.error("Please configure MongoDB connection to continue.")
