@@ -37,6 +37,9 @@ class TuoiTreExcelCrawler(NewsCrawlerInterface):
             response = requests.get(url)
             response.raise_for_status()
             return response.text
+        except requests.HTTPError as e:
+            print(f"Error fetching {url}: {e}")
+            return None
         except requests.RequestException as e:
             print(f"Error fetching {url}: {e}")
             return None
@@ -77,25 +80,26 @@ class TuoiTreExcelCrawler(NewsCrawlerInterface):
 
     def parse_articles(self, soup, category, page, count_articles_category):
         if page == 1:
+            results = []
             box_main = soup.find('div', class_='box-main')
             # Main articles
             item_first = box_main.find('div', class_='item-first')
+            if item_first:
+                results.append(item_first)
 
             # Related articles
             item_related = box_main.find('div', class_='item-related')
-            item_related_list = item_related.find_all('div', class_='box-category-item')
+            if item_related:
+                item_related_list = item_related.find_all('div', class_='box-category-item')
+                if item_related_list:
+                    results.extend(item_related_list)
 
             # Sub articles
             box_sub = soup.find('div', class_='box-sub')
-            sub_item_list = box_sub.find_all('div', class_='box-category-item')
-
-            results = []
-            if item_first:
-                results.append(item_first)
-            if item_related_list:
-                results.extend(item_related_list)
-            if sub_item_list:
-                results.extend(sub_item_list)
+            if box_sub:
+                sub_item_list = box_sub.find_all('div', class_='box-category-item')
+                if sub_item_list:
+                    results.extend(sub_item_list)
 
             for item in results:
                 if count_articles_category >= category['max'] or len(self.articles) > self.max_articles:
@@ -201,8 +205,7 @@ class TuoiTreExcelCrawler(NewsCrawlerInterface):
         self.max_articles = max_articles
         self.get_categories()
         
-        print(self.categories)
-        return
+        # print(self.categories)
         for category in self.categories:
             print(category["url"])
             self.get_articles_categories(category)
