@@ -43,6 +43,8 @@ safety_settings = {
 }
 
 selected_crawler = st.sidebar.selectbox("Select Crawler", list(crawler_options.keys()))
+if 'show_form' not in st.session_state:
+    st.session_state.show_form = False
 
 
 def get_context_aware_query(current_query):
@@ -162,10 +164,11 @@ if client:
         crawler_class = crawler_options[selected_crawler]
         crawler = crawler_class()
         crawl_and_update(crawler, max_articles)
-    if st.sidebar.button("Evaluate"):
-        result = evaluation(collection, model)
-        st.sidebar.write(f"Kết quả sau khi đánh giá: {round(result, 2)} %")
+    
+    if st.sidebar.button("Show/Hide Evaluate"):
+        st.session_state.show_form = not st.session_state.show_form 
 
+    evaluation(collection, model)
     st.title("💬 Improved Hybrid Search RAG Chatbot")
     st.caption(
         "🚀 A Streamlit chatbot powered by Gemini and MongoDB, using Enhanced Hybrid Search with Semantic Reranking")

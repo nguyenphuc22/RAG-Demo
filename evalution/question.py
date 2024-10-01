@@ -111,29 +111,33 @@ def cosine_score(answer, info):
 
 
 def evaluation(collection, model):
-    st.title("Đánh giá chatbot 🔎")    
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.subheader("Lựa chọn số lượng testcases:")
-        st.session_state.no_articles = st.number_input("Số lượng bài báo cần kiểm thử: ", value=st.session_state.get("no_articles", 20))
-        st.session_state.no_question = st.number_input("Số lượng câu hỏi cho mỗi bài báo: ", value=st.session_state.get("no_question", 5))
-    with col2:
-        st.subheader("So sánh với các mô hình tính toán độ tương đồng ngữ nghĩa:")
-        st.session_state.phobert_opt = st.checkbox("PhoBERT", value=st.session_state.get("phobert_opt", True))
-        st.session_state.bertemb_opt = st.checkbox("BERT-Base", value=st.session_state.get("bertemb_opt", True))
-    with col3:
-        st.subheader("So sánh với các mô hình suy luận ngôn ngữ tự nhiên (NLI):")
-        st.session_state.roberta_opt = st.checkbox("XLM-RoBERTa", value=st.session_state.get("roberta_opt", True))
-        st.session_state.factbert_opt = st.checkbox("BART-Large-MNLI", value=st.session_state.get("factbert_opt", True))
+    if st.session_state.show_form:
+        with st.form("my_form"):
+            st.title("Đánh giá chatbot 🔎")    
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.subheader("Lựa chọn số lượng testcases:")
+                no_articles = st.number_input("Số lượng bài báo cần kiểm thử: ", value=20, min_value=1)
+                no_question = st.number_input("Số lượng câu hỏi cho mỗi bài báo: ", value=5, min_value=1)
+            with col2:
+                st.subheader("So sánh với các mô hình tính toán độ tương đồng ngữ nghĩa:")
+                phobert_opt = st.checkbox("PhoBERT", value=True)
+                bertemb_opt = st.checkbox("BERT-Base", value=True)
+            with col3:
+                st.subheader("So sánh với các mô hình suy luận ngôn ngữ tự nhiên (NLI):")
+                roberta_opt = st.checkbox("XLM-RoBERTa", value=True)
+                factbert_opt = st.checkbox("BART-Large-MNLI", value=True)
 
-    result = 0
-    if st.button("Bắt đầu kiểm thử"):
-        result = _evaluation(collection, model,
-                                              st.session_state.no_articles, st.session_state.no_question,
-                                              st.session_state.phobert_opt, st.session_state.bertemb_opt, 
-                                              st.session_state.roberta_opt, st.session_state.factbert_opt)
+            result = 0
+            if st.form_submit_button(label='Bắt đầu kiểm thử'):
+                st.write("Số lượng bài báo:", no_articles)
+                st.write("Số lượng câu hỏi cho mỗi bài báo:", no_question)
+                result = _evaluation(collection, model,
+                                                    no_articles, no_question,
+                                                    phobert_opt, bertemb_opt, 
+                                                    roberta_opt, factbert_opt)
+            return result
 
-    return result
 
 def _evaluation(collection, model, no_articles, no_question, phobert_opt, bertemb_opt, roberta_opt, factbert_opt):
     # Open a log file
