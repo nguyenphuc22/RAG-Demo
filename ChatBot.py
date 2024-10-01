@@ -65,10 +65,17 @@ if client:
         crawl_and_update(crawler, max_articles)
 
     st.title("💬 RAG Chatbot")
-    st.caption("🚀 A Streamlit chatbot powered by Gemini and MongoDB, using VnExpress articles")
+    st.caption(f"🚀 A Streamlit chatbot powered by Gemini and MongoDB, using {selected_crawler} articles")
+
+    if "previous_crawler" not in st.session_state:
+        st.session_state["previous_crawler"] = selected_crawler
+
+    if selected_crawler != st.session_state["previous_crawler"]:
+        st.session_state["messages"] = [{"role": "assistant", "content": f"Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ {selected_crawler}?"}]
+        st.session_state["previous_crawler"] = selected_crawler
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": "Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ VnExpress?"}]
+        st.session_state["messages"] = [{"role": "assistant", "content": f"Xin chào! Tôi có thể giúp gì cho bạn về các tin tức từ {selected_crawler}?"}]
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
@@ -87,6 +94,6 @@ if client:
         st.chat_message("assistant").write(msg)
 
     st.sidebar.title("Giới thiệu")
-    st.sidebar.info("Chatbot này sử dụng RAG với MongoDB và Gemini để cung cấp thông tin từ các bài báo VnExpress.")
+    st.sidebar.info(f"Chatbot này sử dụng RAG với MongoDB và Gemini để cung cấp thông tin từ các bài báo {selected_crawler}.")
 else:
     st.error("Please configure MongoDB connection to continue.")
