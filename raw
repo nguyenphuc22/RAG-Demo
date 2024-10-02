@@ -1,0 +1,337 @@
+(RAG-Demo) phucnguyen@Phucs-MacBook-Pro RAG-Demo % streamlit run chatbot.py
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.0.5:8501
+
+  For better performance, install the Watchdog module:
+
+  $ xcode-select --install
+  $ pip install watchdog
+
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+/Users/phucnguyen/Documents/GitHub/RAG-Demo/RAG-Demo/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Number of documents in collection: 28
+Indexes: {'_id_': {'v': 2, 'key': [('_id', 1)]}, 'embedding_2d': {'v': 2, 'key': [('embedding', '2d')]}, 'title_text_chunk_content_text': {'v': 2, 'key': [('_fts', 'text'), ('_ftsx', 1)], 'weights': SON([('chunk_content', 1), ('title', 1)]), 'default_language': 'english', 'language_override': 'language', 'textIndexVersion': 3}}
+Crawling new articles...
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Không tìm thấy ngày đăng bài
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Ngày đăng bài: 17/09/2024
+Saved 20 articles to articles.xlsx
+All documents deleted from the collection.
+Adding chunk 1/3 for article: Nghi phạm âm mưu ám sát ông Trump từng làm gì ở Ukraine?
+ URL: https://vnexpress.net/nghi-pham-am-muu-am-sat-ong-trump-tung-lam-gi-o-ukraine-4793710.html
+ Chunk: Hai tháng sau vụ ám sát hụt tại sự kiện tranh cử ở Bulter, bang Pennsylvania, cựu tổng thống Donald Trump ngày 15/9 đối mặt âm mưu ám sát tại câu lạc bộ golf ở West Palm Beach, bang Florida. Nghi phạm được xác định là người đàn ông 58 tuổi Ryan Wesley Routh.Routh là người ủng hộ nhiệt thành cho Ukraine, nhưng từng có nhiều hành động thất thường đến nỗi một số người Mỹ phải báo cáo hành vi của ông ta với giới chức.Routh đã tới Ukraine ngay sau khi Nga bắt đầu chiến dịch cuối tháng 2/2022 với hy vọng được tham chiến. Tại Kiev, Routh nhuộm tóc màu xanh và vàng như màu cờ của Ukraine và thường xuyên mặc áo phông có ba màu cờ Mỹ gồm đỏ, trắng và xanh dương. Routh dán áp phích khắp Kiev để kêu gọi người nước ngoài muốn hỗ trợ Ukraine nhắn tin cho ông ta.Chelsea Walsh, y tá ở West Palm Beach, nói cô đã nhắn tin tới số điện thoại trên áp phích khi mới đến Kiev, nghĩ rằng nó sẽ giúp cô kết nối với một tổ chức tình nguyện.Tuy nhiên, Routh đã yêu cầu cô gặp ông ta và những người khác tại quảng trường trung tâm ở Kiev vào ngày hôm sau để giương cờ các quốc gia và tuyên bố về sự hỗ trợ toàn cầu dành cho Ukaine. Walsh đã tới và giơ cao lá cờ của Ireland. Lúc đó, Walsh cảm thấy Routh lập dị nhưng không nguy hiểm. Ryan Wesley Routh tham gia cuộc biểu tình ở Kiev, Ukraine hồi tháng 4/2022. Ảnh: AP
+
+Quan điểm của cô về ông này thay đổi sau hàng chục cuộc gặp gỡ ở Kiev. Walsh kể ông ta đã nói về việc muốn ám sát Tổng thống Nga Putin và lãnh đạo Triều Tiên Kim Jong-un. Routh cũng đề cập tới cựu tổng thống Trump và Tổng thống Joe Biden, song Walsh không nhớ liệu ông ta có nói điều gì đe dọa về họ hay không.Những lời đe dọa bạo lực của Routh khiến Walsh lo lắng đến mức phải chia sẻ những lo ngại của mình với sĩ quan Cơ quan Hải quan và Biên phòng Mỹ (CBP) trong cuộc nói chuyện kéo dài một giờ ở sân bay Dulles, Washington, hồi tháng 6/2022.Walsh nói rằng Routh là một trong những người Mỹ nguy hiểm nhất mà cô gặp trong một tháng rưỡi ở Ukraine. Cô cũng cho sĩ quan CBP xem cuốn sổ liệt kê hơn chục cái tên người Mỹ và những người khác có hành động khiến cô hoảng sợ. Mục những người có đặc điểm chống đối xã hội gồm 4 cái tên, trong đó Routh đứng đầu danh sách.Khi nghe tin Routh cố chiêu mộ người tị nạn Syria đến chiến đấu ở Ukraine năm 2023, Walsh đã gửi cảnh báo trực tuyến cho FBI và Interpol, nêu rõ những lo ngại về Routh. Cả CBP và FBI đều không hồi đáp.Routh nổi lên trong các nhóm tình nguyện cứu trợ ở Ukraine như "kẻ lừa đảo" và "lập dị", theo Sarah Adams, cựu sĩ quan CIA từng giúp vận hành mạng lưới 50 nhóm cứu trợ để chia sẻ thông tin, điều phối hoạt động nhân đạo.
+Adding chunk 2/3 for article: Nghi phạm âm mưu ám sát ông Trump từng làm gì ở Ukraine?
+ URL: https://vnexpress.net/nghi-pham-am-muu-am-sat-ong-trump-tung-lam-gi-o-ukraine-4793710.html
+ Chunk: hanistan trên ứng dụng Signal và WhatsApp, giới thiệu mình là người Mỹ và đã giúp "quân đội Ukraine nhận thử một số lính Afghanistan".Routh cũng từng xuất hiện trong video đứng trước Đồi Capitol, bày tỏ thất vọng rằng Ukraine không tiếp nhận nhiều hơn những người lính Afghanistan mà ông ta chiêu mộ. Adams cho biết Routh từng tuyên bố đang làm việc với chính phủ Ukraine để tuyển mộ binh sĩ nước ngoài, nhưng điều này không đúng.Routh gửi tin nhắn tới các binh sĩ Afghanistan trên ứng dụng Signal và WhatsApp, giới thiệu mình là người Mỹ và đã giúp "quân đội Ukraine nhận thử một số lính Afghanistan".Routh cũng từng xuất hiện trong video đứng trước Đồi Capitol, bày tỏ thất vọng rằng Ukraine không tiếp nhận nhiều hơn những người lính Afghanistan mà ông ta chiêu mộ. Routh sau đó nói với Semafor năm 2023 rằng Ukraine lo sợ họ là "gián điệp".Tuy nhiên, Cục Điều phối người nước ngoài thuộc Bộ Tư lệnh Lục quân Ukraine cho biết Routh chưa từng phục vụ trong quân đội Ukraine hay hợp tác với họ. Oleksandr Shahuri, đại diện cục điều phối, cho hay Routh thường xuyên liên lạc với Quân đoàn Quốc tế Ukraine để đưa ra "những ý tưởng vô nghĩa và thậm chí là ảo tưởng".Cảnh giác với các tin nhắn kêu gọi của Routh, các nhóm cứu trợ khác đã cấm ông ta tham gia hoạt động của họ trên Signal. Họ cũng báo cáo hoạt động của Routh với Bộ Ngoại giao Mỹ, bày tỏ lo ngại rằng ông ta có thể dính dáng tới hành vi buôn người hoặc nhập cư trái phép, theo Adams. "Hãy cẩn thận với Ryan Routh", Adams gửi tin nhắn cảnh báo các nhóm cứu trợ Ukraine hồi tháng 6/2023.Adams thêm rằng rất nhiều người đã cố gắng ngăn cản hoạt động của Routh hoặc ít nhất ngăn mọi người "rơi vào những trò lừa đảo" của ông ta. Mỹ công bố video bắt nghi phạm định ám sát ông Trump ở Florida
+
+
+
+
+
+Cảnh sát khống chế Ryan Routh. Video: Martin County Sheriff's Office
+Mặc dù giới chức Ukraine phủ nhận liên quan đến Routh, một người đàn ông Pháp tới Ukraine với ý định tham chiến cho biết Routh đã giúp anh ta được tuyển vào một đơn vị quân đội Ukraine. Anh kể rằng Routh đã bày tỏ phẫn nộ về ông Trump khi hai người gặp nhau tại một quán bia ở Kiev năm 2022. "Ryan rất thất vọng về việc ông Trump cố gắng đàm phán thỏa thuận với ông Putin thay vì thực sự ủng hộ Ukraine", người đàn ông này nói.Vài năm gần đây, Routh có quan điểm ngày càng tệ về Trump. Trong cuốn sách tự xuất bản năm 2023 mang tên Cuộc chiến không thể thắng của Ukraine, Routh viết rằng "Iran có thể thoải mái ám sát ông Trump", mô tả cựu tổng thống là "kẻ ngốc" vì cuộc bạo loạn Đồi Capitol hồi tháng 1/2021 và "mắc sai lầm lớn" khi rút khỏi thỏa thuận hạt nhân với Iran.Routh nói ông từng bỏ phiếu bầu cho Trump và phải chịu trách nhiệm với "người mà chúng tôi đã bầu làm tổng thống tiếp theo, nhưng cuối cùng hóa ra chỉ là kẻ ngốc". Ông ta bày tỏ ủng hộ đối với Tổng thống Biden và Phó tổng thống Kamala Harris.
+Adding chunk 3/3 for article: Nghi phạm âm mưu ám sát ông Trump từng làm gì ở Ukraine?
+ URL: https://vnexpress.net/nghi-pham-am-muu-am-sat-ong-trump-tung-lam-gi-o-ukraine-4793710.html
+ Chunk: lựa chọn của tôi và chúng tôi không thể thua", ông viết trên X hồi tháng 4.Vào tháng 7, sau vụ ông Trump bị ám sát hụt tại Pennsylvania, Routh viết trên mạng xã hội rằng ông Biden và bà Harris nên tới thăm những người bị thương trong vụ xả súng và tham dự đám tang của người lính cứu hỏa thiệt mạng. "Đảng Dân chủ là lựa chọn của tôi và chúng tôi không thể thua", ông viết trên X hồi tháng 4.Vào tháng 7, sau vụ ông Trump bị ám sát hụt tại Pennsylvania, Routh viết trên mạng xã hội rằng ông Biden và bà Harris nên tới thăm những người bị thương trong vụ xả súng và tham dự đám tang của người lính cứu hỏa thiệt mạng. "Trump sẽ không bao giờ làm bất kỳ điều gì cho họ", Routh bình luận.Routh cũng viết trong sách của ông ta rằng thế giới sẽ tốt đẹp hơn nếu do phụ nữ lãnh đạo, bởi vì "dường như toàn bộ vấn đề của thế giới xoay quanh những người đàn ông bất ổn, với trí thông minh và hành vi như trẻ con". Vị trí của ông Trump và nơi nghi phạm bị phát hiện ở sân golf tại West Palm Beach, Florida ngày 15/9. Đồ họa: AP
+
+Sau khi bị bắt vì âm mưu ám sát ông Trump, Routh ngày 16/9 đã hầu tòa với hai tội danh "sở hữu súng dù là người từng bị kết án trọng tội" và "sở hữu khẩu súng bị xóa số seri". Nếu bị kết án cả hai tội, Routh sẽ đối mặt với mức án tù lên tới 20 năm. Giới chức có thể đưa ra thêm cáo buộc với Routh.Dù nhiều người từng bày tỏ lo ngại về Routh, vẫn có người nói tốt về ông này. Hàng xóm Christopher Tam mô tả Routh rất kín tiếng, tôn trọng người khác, thân thiện và tử tế. "Những điều anh ta bị cáo buộc thực sự rất đáng ngạc nhiên. Chúng tôi thực sự bị sốc", Tam nói.Thùy Lâm (Theo AP, WSJ, CBS News)
+Adding chunk 1/2 for article: Ngộ nhận 'Tây là tốt'
+ URL: https://vnexpress.net/ngo-nhan-tay-la-tot-4793739.html
+ Chunk: Tuy nhiên, khi di cư tới một nước phương Tây, chị lại cho rằng giáo dục phương Tây rất kém. Học sinh không biết làm toán, không thể đọc hiểu... Vì vậy, phương Tây đang phải thu hút nhân tài từ các nước đang phát triển như Việt Nam để lấp chỗ trống này. Thực tế, đây cũng là những luồng ý kiến thường được bàn luận khi nói về giáo dục.Theo tôi cả hai trường phái đều là cực đoan và ngộ nhận. Những nền giáo dục tiên tiến của phương Tây không hoàn hảo, nhưng cũng không hề kém.Bắt đầu từ năm 2000, Tổ chức Hợp tác và Phát triển Kinh tế OECD (Organisation for Economic Co-operation and Development) thực hiện Chương trình Đánh giá học sinh quốc tế (Programme for International Student Assessment - PISA) để đo lường khả năng của học sinh 15 tuổi ở các nước và vùng lãnh thổ trong và ngoài OECD, về toán, khoa học và đọc hiểu.Kết quả PISA 2022 cho thấy những nước bị xem là lười học toán như Australia (487 điểm), Canada (497) có khoảng cách nhất định với Trung Quốc (552), Nhật Bản (536) nhưng lại tốt hơn nước chăm học toán là Việt Nam (469). Kết quả đọc hiểu cũng tương tự.Việc bạn tôi cảm thấy Tây dốt toán là do hai hiệu ứng. Thứ nhất, chị đang lấy bản thân (là học sinh ưu tú của Việt Nam) để so sánh với môi trường xung quanh (có thể không phải môi trường ưu tú của nước bạn). Thứ hai là con người thường có xu hướng quy chụp suy rộng. Giống như việc tôi từng gặp một số người Australia cho rằng không nói được tiếng Anh thành thạo là có học thức thấp.Còn chuyện các nước thu hút nhân tài là một chính sách khôn ngoan, không có nghĩa nền giáo dục của họ không có khả năng đào tạo nhân tài. Nếu nhìn vào danh sách người đoạt các giải thưởng danh giá như Nobel, Fields... chúng ta có thể bắt gặp một số người gốc Á, và nhiều người trong số này cũng được đào tạo từ nhỏ ở phương Tây.Nói như vậy, nhưng giáo dục phương Tây cũng có ưu khuyết riêng. Nhìn về tổng thể, các nền giáo dục này chưa chắc đã hiệu quả hơn Việt Nam, nếu tính tới nguồn lực khổng lồ mà các nước tiên tiến đầu tư vào. Năm 2022, Australia chi 88,4 tỷ USD cho bốn triệu học sinh, trong khi Việt Nam chỉ đầu tư 12 tỷ USD cho 18 triệu học sinh. Tất nhiên, mọi so sánh đều là khập khiễng. Tuy nhiên, người làm giáo dục ở các nước tiên tiến vẫn hiểu rằng họ còn ở rất xa mức hoàn thiện và có những vấn đề cần đối mặt. Ví dụ, kết quả PISA của Australia trong hơn 20 năm qua thực tế là đi xuống đáng kể, chứ không đi lên.Giáo dục các nước phương Tây thậm chí cũng phải đối mặt với những vấn đề mà giáo dục Việt Nam gặp phải. Ví dụ, Australia cũng có tình trạng thiếu giáo viên, và đầu vào ngành sư phạm quá thấp. Các nhà giáo từng cảnh báo việc này sẽ kéo chất lượng giảng dạy đi xuống, vì giáo viên ngoài truyền đạt kiến thức, còn cần truyền đạt niềm đam mê với kiến thức cho các em.
+Adding chunk 2/2 for article: Ngộ nhận 'Tây là tốt'
+ URL: https://vnexpress.net/ngo-nhan-tay-la-tot-4793739.html
+ Chunk: cử thủ tướng Australia, ứng viên lưỡng đảng đều khẳng định giáo dục Australia có sự thiếu công bằng và còn xa mới đạt tới nền giáo dục tốt nhất thế giới.Thế nhưng nền giáo dục tốt nhất thế giới được nhiều học giả tán dương và diễn đàn kinh tế công nhận vào năm 2018 là Phần Lan cũng không công bằng. Năm 2019, trong chiến dịch tranh cử thủ tướng Australia, ứng viên lưỡng đảng đều khẳng định giáo dục Australia có sự thiếu công bằng và còn xa mới đạt tới nền giáo dục tốt nhất thế giới.Thế nhưng nền giáo dục tốt nhất thế giới được nhiều học giả tán dương và diễn đàn kinh tế công nhận vào năm 2018 là Phần Lan cũng không công bằng. Dựa trên kết quả tốt nghiệp trung học của hơn 400 trường trung học, tôi thấy phổ điểm của Phần Lan bình thường như bao nước khác, kể cả Việt Nam. Trường tốt nhất có điểm trung bình tốt nghiệp gần gấp đôi trường kém nhất (5,98/7 so với 3,13/7). Nếu ở Việt Nam có phụ huynh đạp hàng rào cổng trường để cho con học trường điểm, thì ở Phần Lan cũng có một số phụ huynh chuyển hoặc thuê nhà để con được vào học trường tốt; mặc kệ chính phủ và nhiều nhà quản lý giáo dục đều cố gắng thuyết phục mọi người rằng không có sự khác biệt nào giữa các trường, trường tốt nhất là trường gần nhà nhất...Vậy nên, khi học hỏi nền giáo dục tiên tiến, cần một sự tỉnh táo nhất định. Nếu không học hỏi thì không tiến bộ. Mà nếu học, thì cần biết cách chọn lọc phù hợp, hơn là kêu gọi sao chép mù quáng chỉ vì điều đó có ở phương Tây. Tôi cho rằng cả hai ngộ nhận trên đều nên được loại bỏ khỏi tâm thế khi chúng ta cắp sách đi học những nền giáo dục tiên tiến.Thế mạnh lớn nhất của Việt Nam là hiếu học. Từ ngàn đời nay, người Việt Nam thức khuya dậy sớm học tập để có tri thức, có sức mạnh, có khả năng làm chủ cuộc sống của mình. Điều chúng ta còn chưa có đầy đủ là một nền giáo dục thực dụng hiệu quả cao, giúp người học tiết kiệm thời gian và có năng lực tốt.Tô Thức
+Adding chunk 1/2 for article: 27 cơ thủ Việt Nam bị cấm một năm
+ URL: https://vnexpress.net/27-co-thu-viet-nam-bi-cam-mot-nam-4793840.html
+ Chunk: Lệnh cấm của UMB đã được Liên đoàn Billiards & Snooker Việt Nam (VBSF) thông báo tới Sở Văn hóa, Thể thao và Du lịch các tỉnh, thành phố cùng các liên đoàn địa phương, có VĐV liên quan. Theo đó, 128 cơ thủ nam và 64 cơ thủ nữ vừa dự giải này sẽ bị cấm thi đấu một năm trên các giải thuộc UMB và quốc gia của cơ thủ đó, từ ngày 27/8/2024 đến ngày 27/8/2025.Hanoi Open 2024 tổ chức từ ngày 19/8 đến 26/8 tại Hà Nội. Giải đấu thuộc hệ thống của Hiệp hội Billiards Chuyên nghiệp (PBA) – là tổ chức đối trọng và không được UMB công nhận. Cơ thủ carom 3 băng Nguyễn Quốc Nguyện. Ảnh: PBA
+
+Việt Nam không có cơ thủ nữ, nhưng có 32 cơ thủ nam tham dự Hanoi Open 2024. Trong đó, năm cơ thủ nổi tiếng đã bị UMB cấm từ trước, do chuyển hẳn sang chơi cho PBA, gồm Nguyễn Quốc Nguyện, Ngô Đình Nại, Mã Minh Cẩm, Nguyễn Huỳnh Phương Linh và Nguyễn Đức Anh Chiến.27 cơ thủ còn lại gồm Huỳnh Phi Long, Trương Văn Đức, Tô Minh Thiện, Trương Thái Duy, Huỳnh Thanh Hiền, Đỗ Đức Hiền, Huỳnh Đức, Huỳnh Lê Trương Hưng, Trần Quốc Vinh, Nguyễn Công Thành, Ngô Văn Đức, Cao Ngọc Bảo Kha, Nguyễn Đình Núi, Trần Đình Phương Vũ, Ken Vĩnh, Nguyễn Mạnh Phát, Trần Tiến Phong, Đặng Mai Phú, Trương Bé Năm, Nguyễn Ngọc Trị, Lâm Hán Thành, Nguyễn Văn Phước Hiếu, Nguyễn Văn Long, Huỳnh Tấn Mỹ, Nguyễn Quốc Thắng, Nguyễn Vũ Quang Trường, Trần Văn Ngân.15 trong 27 tay cơ kể trên đã có mã định danh trên bảng thứ bậc UMB. Một số tay cơ đã để lại tên tuổi trong làng carom 3 băng Việt Nam, như Ngọc Trị, Trần Văn Ngân, Đỗ Đức Hiền, Đình Núi. Những VĐV này giành quyền tham dự Hanoi Open 2024 sau khi thi đấu vòng loại tại TP HCM.Ngoài Việt Nam, VĐV dự Hanoi Open 2024 phần lớn đến từ Hàn Quốc, một số đến từ Nhật Bản, Tây Ban Nha, Bỉ, Thổ Nhĩ Kỳ. Cơ thủ carom 3 băng Trần Văn Ngân. Trao đổi với VnExpress, Nguyễn Quốc Nguyện thấu hiểu luật cấm của UMB, vì chỉ khi các thành viên tuân thủ quy định thì hiệp hội mới có thể duy trì và phát triển. Nhưng cơ thủ 42 tuổi người Gia Lai cũng mong rằng các cơ quan quản lý như PBA hay UMB tìm tiếng nói chung để xóa bỏ lệnh cấm hoặc giảm bớt mức độ, giúp VĐV được dự nhiều giải, qua đó làm môn thể thao phát triển hơn nữa.Lệnh cấm của UMB cũng không ảnh hưởng đến giải carom 3 băng vô địch thế giới 2024 sẽ tổ chức tại Bình Thuận, từ ngày 25/9 đến 29/9, khi không có tay cơ nào trong danh sách cấm tham dự. Tuy nhiên, giải này vẫn sẽ quy tụ những cơ thủ 3 băng hàng đầu Việt Nam khác như Bao Phương Vinh, Trần Quyết Chiến, Trần Đức Minh.PBA thành lập từ năm 2019 tại Hàn Quốc, và tạo nên hệ thống PBA Tour thi đấu carom 3 băng. Hanoi Open 2024 là lần đầu tiên PBA Tour tổ chức ở nước ngoài.PBA không cấm các VĐV đã ký hợp đồng tham dự các giải của UMB, nhưng UMB thì ngược lại. Các VĐV Việt Nam đến Hanoi Open đều biết có thể nhận án cấm từ UMB, nhưng vẫn tham gia.
+Adding chunk 2/2 for article: 27 cơ thủ Việt Nam bị cấm một năm
+ URL: https://vnexpress.net/27-co-thu-viet-nam-bi-cam-mot-nam-4793840.html
+ Chunk: Họ sẽ không được dự các giải của UMB, hoặc đơn vị trực thuộc như VBSF, Liên đoàn Billiards châu Á (ACBS) tổ chức.Sức hấp dẫn của PBA đến từ thể thức thi đấu đánh theo set và tạo nhiều cơ hội cho VĐV nữ, VĐV trẻ dưới 18 tuổi tham dự. Họ sẽ không được dự các giải của UMB, hoặc đơn vị trực thuộc như VBSF, Liên đoàn Billiards châu Á (ACBS) tổ chức.Sức hấp dẫn của PBA đến từ thể thức thi đấu đánh theo set và tạo nhiều cơ hội cho VĐV nữ, VĐV trẻ dưới 18 tuổi tham dự. Tiền thưởng vô địch nam một chặng PBA Tour là khoảng 75.000 USD, cao hơn ba lần so với một chặng UMB World Cup. Trên các diễn đàn billiards, người hâm mộ Việt Nam cho rằng việc tiếp cận xem PBA Tour dễ hơn UMB.Trước đó, ngày 30/7, VBSF cho biết các thành viên bị cấm tham dự các giải của ACBS, Liên đoàn Pool Thế giới (WPA) và Liên đoàn Billiards & Snooker Quốc tế (ISBF) trong sáu tháng, từ 13/7/2024 đến 12/1/2025. Lý do được đưa ra là Việt Nam đã tổ chức giải pool Hanoi Open vào tháng 10/2023. Giải đấu không được ACBS, WPA cấp phép, do thuộc hệ thống World Nineball Tour (WNT) của Matchroom Pool – một tổ chức đối lập với WPA.Lệnh cấm của ACBS, WPA và ISBF dẫn đến cuộc tranh luận lớn trong giới billiards Việt Nam lẫn thế giới. Nhiều cơ thủ pool nổi tiếng như Shane Van Boening, Jyson Shaw, Francisco Sanchez... đòi dỡ lệnh cấm và có thể tẩy chay không tham dự các giải của WPA. Điều này khiến WPA phải lên tiếng trấn an, cho biết sẽ có cuộc gặp gỡ trực tuyến để lắng nghe nguyện vọng của các cơ thủ. Matchroom và PBA thất vọng, cho rằng ACBS vượt quyền và kìm hãm sự phát triển của billiards Việt Nam.Hiếu Lương
+Adding chunk 1/1 for article: Phu nhân đại tướng Võ Nguyên Giáp qua đời
+ URL: https://vnexpress.net/phu-nhan-dai-tuong-vo-nguyen-giap-qua-doi-4793935.html
+ Chunk: Bà Đặng Bích Hà sinh năm 1928 tại Nghệ An, là con gái của Giáo sư Đặng Thai Mai, nguyên Bộ trưởng Giáo dục, Viện trưởng Viện Văn học Việt Nam. Bà gắn bó với đại tướng Võ Nguyên Giáp từ những năm thiếu thời, khi ông sống tại nhà giáo sư Đặng Thai Mai trong 10 năm, từ 1931 đến 1941.Năm 1943, bà Bích Hà theo trường tản cư về Thanh Hóa, hai năm sau mới quay về Hà Nội. Bà từng kể khi 6-7 tuổi, thường được ông Giáp chở đến sân vận động Hàng Đẫy (khi đó gọi là Septo) tập thể thao. Năm 1945, hai người gặp lại nhau. Lúc này, đại tướng đang chịu nỗi đau mất vợ, khi bà Nguyễn Thị Quang Thái bị bắt và mất trong nhà tù Hỏa Lò đầu năm 1944.Cuối năm 1946, lễ cưới giản dị giữa đại tướng Võ Nguyên Giáp và bà Đặng Bích Hà được tổ chức. Hai người gắn bó với nhau đến khi đại tướng Võ Nguyên Giáp qua đời năm 2013.Dù bận rộn với công việc, đại tướng Võ Nguyên Giáp luôn dành những khoảnh khắc đặc biệt cho gia đình. Mỗi dịp kỷ niệm ngày cưới 27/11, ông đều nhờ con gái mua một bó hoa tặng bà Đặng Bích Hà. Những năm cuối đời, sức khỏe tướng Giáp ngày càng yếu, hầu hết thời gian nằm trong bệnh viện. Bà Hà luôn chăm sóc, đồng hành, chuyện trò cùng ông. Đại tướng Võ Nguyên Giáp và phu nhân Đặng Bích Hà. Ảnh: Trần Hồng
+
+Sinh năm 1911 tại Lệ Thủy, Quảng Bình, đại tướng Võ Nguyên Giáp từ một thầy giáo dạy sử đã trở thành nhà quân sự tài ba. Là đại tướng đầu tiên và Tổng Tư lệnh tối cao của Quân đội nhân dân Việt Nam, ông đã có những đóng góp to lớn vào sự nghiệp giải phóng dân tộc.Trong kháng chiến chống Pháp và chống Mỹ, đại tướng trực tiếp chỉ huy nhiều chiến dịch lớn. Tên tuổi của ông gắn liền với chiến thắng trong Chiến dịch Điện Biên Phủ (1954) và Hồ Chí Minh (1975) - những bước ngoặt trong lịch sử dân tộc.Sau khi đất nước thống nhất, ông làm Phó thủ tướng kiêm Bộ trưởng Quốc phòng (đến 1980); Phó chủ tịch Hội đồng Bộ trưởng (1981-1991). Ông cũng là đại biểu Quốc hội các khóa 1-7.Đại tướng Võ Nguyên Giáp kết hôn lần đầu năm 1934 với nhà cách mạng Nguyễn Thị Quang Thái. Hai người có một người con là bà Võ Hồng Anh (1941-2009).Ông tái hôn với giáo sư Đặng Bích Hà năm 1946, sau khi bà Thái hy sinh. Ông bà có 4 người con là Võ Hòa Bình, Võ Hạnh Phúc, Võ Điện Biên và Võ Hồng Nam. Viết Tuân
+Adding chunk 1/1 for article: Meta cấm các hãng truyền thông nhà nước Nga
+ URL: https://vnexpress.net/meta-cam-cac-hang-truyen-thong-nha-nuoc-nga-4793974.html
+ Chunk: "Sau khi cân nhắc kỹ lưỡng, chúng tôi mở rộng hạn chế đang được áp dụng đối với các cơ quan truyền thông nhà nước Nga", Meta ngày 16/9 cho hay. "Rossiya Segodnya, RT và các thực thể liên quan hiện bị cấm khỏi các ứng dụng của chúng tôi trên toàn cầu vì tiến hành hoạt động can thiệp của nước ngoài".Meta, công ty có trụ sở tại Mỹ, sở hữu các ứng dụng bao gồm Facebook, Instagram, WhatsApp và Threads.Rossiya Segodnya là tập đoàn truyền thông hàng đầu của Nga, sở hữu nhiều kênh lớn, trong đó có RIA Novosti, Sputnik, phát hành tại 19 quốc gia với 32 ngôn ngữ. RT ra mắt vào năm 2005 với tên gọi "Russia Today", từ đó mở rộng với các kênh truyền hình và trang web bằng các ngôn ngữ bao gồm tiếng Anh, Pháp, Tây Ban Nha và Arab.Nga chỉ trích gay gắt động thái của Meta. "Meta đang tự làm mất uy tín của chính mình bằng hành động này. Những việc làm chống lại truyền thông Nga là không thể chấp nhận được và làm phức tạp triển vọng bình thường hóa quan hệ của chúng tôi với Meta", người phát ngôn Điện Kremlin Dmitry Peskov nói tại cuộc họp báo ở Moskva ngày 17/9. Các ứng dụng thuộc sở hữu của Meta trên màn hình điện thoại ở Chania, Hy Lạp ngày 9/8. Ảnh: AFP
+
+Lệnh cấm được đưa ra sau khi Mỹ cáo buộc RT và các nhân viên của đài này chuyển 10 triệu USD thông qua những "thực thể bình phong" để bí mật tài trợ cho các chiến dịch gây ảnh hưởng trên mạng xã hội TikTok, Instagram, X và YouTube, AFP dẫn nội dung một bản cáo trạng chưa được công bố.RT đã buộc phải ngừng hoạt động tại Anh, Canada, Liên minh châu Âu và Mỹ do các lệnh trừng phạt sau khi Nga mở chiến dịch ở Ukraine tháng 2/2022.Bộ Ngoại giao Mỹ gần đây cho biết năng lực của RT đã được mở rộng vào đầu năm ngoái, với việc chính phủ Nga tăng cường "năng lực hoạt động mạng và mối quan hệ với tình báo Nga". Mỹ khẳng định thông tin thu thập được từ hoạt động bí mật của RT sẽ được chuyển đến các cơ quan tình báo, truyền thông Nga.Tổng biên tập RT Margarita Simonyan mỉa mai những cáo buộc này, nói đùa rằng RT đã học theo người Mỹ, chứ không phải từ các sĩ quan tình báo Nga. "Thật sao? Các anh hết gương rồi à? ", bà nói.Nhà Trắng từ chối bình luận về động thái của Meta. Ngoại trưởng Antony Blinken cuối tuần qua cho rằng các quốc gia nên coi hoạt động của RT như "hoạt động tình báo bí mật".Nga hồi năm 2022 coi Meta là tổ chức "cực đoan" và chặn Instagram, Facebook. Moskva cũng chỉ trích những nỗ lực trước đây của Meta trong việc hạn chế năng lực tiếp cận của truyền thông Nga và nhiều lần phạt công ty này vì không xóa nội dung bị cho là bất hợp pháp ở Nga. WhatsApp, ứng dụng chưa bị Nga cấm, hiện vẫn có hàng triệu người sử dụng ở quốc gia này.Huyền Lê (Theo AFP, Reuters, RT)
+Adding chunk 1/1 for article: Trương Thế Vinh: 'Tôi không đánh đổi sức khỏe vì tiền'
+ URL: https://vnexpress.net/truong-the-vinh-toi-khong-danh-doi-suc-khoe-vi-tien-4792567.html
+ Chunk: Sau nhiều năm ngưng ca hát, Trương Thế Vinh gây chú ý khi trở lại tại show âm nhạc Anh trai vượt ngàn chông gai. Anh nói tìm thấy nhiều niềm hứng khởi, được khơi dậy tình yêu nghề. Trương Thế Vinh: 'Sợ nhất là không thể lo cho gia đình'
+
+
+
+
+
+Trương Thế Vinh: "Tôi không lo già, chỉ sợ cô đơn"
+Trương Thế Vinh tự nhận bản thân không quá giàu nhưng hài lòng về sự bình yên đang có. "Nhiều năm qua, tôi chọn cách sống bình tĩnh nhưng vẫn đặt ra mục tiêu rõ ràng để phấn đấu. Điều tôi chú trọng là sức khỏe. Tôi sợ nhất nếu một ngày không còn được thể hiện sự yêu thương, trách nhiệm với gia đình", anh nói. Với Trương Thế Vinh, gia đình có ý nghĩa quan trọng trong việc bồi đắp tình yêu nghề, đồng thời giúp anh tránh khỏi những cám dỗ, dần trở thành trụ cột như hiện tại. Anh thấm thía về tình thân rõ ràng nhất sau khi bố qua đời. Hiện ca sĩ muốn làm chỗ dựa tinh thần, mang đến niềm vui cho mẹ. Trương Thế Vinh tên thật là Nguyễn Xuân Vinh, 40 tuổi, sinh ở Đà Nẵng. Năm 2001, anh cùng Khánh Phương, Trần Tuyên và Phương Tài thành lập nhóm nhạc MP5. Nhóm hoạt động được ba năm thì tan rã. Thế Vinh sau đó chuyển sang solo, ghi dấu ấn với khán giả qua nhiều nhạc phẩm như Tình yêu hoa gió, Anh sẽ trở về, Bức tranh trong tim. Với diễn xuất, anh từng đóng các phim Hoán đổi thân xác (2011), Nhà có năm nàng tiên (2013), Cha và con và... (2015), Người bất tử, Cây táo nở hoa (2018). Gần nhất, Trương Thế Vinh tham gia dự án điện ảnh Án mạng lầu 4, đóng cùng Lương Bích Hữu. Tân Cao - Tuấn Việt
+Adding chunk 1/1 for article: Người đập vỡ kính, tấn công tài xế ôtô sau va chạm giao thông bị bắt
+ URL: https://vnexpress.net/nguoi-dap-vo-kinh-tan-cong-tai-xe-oto-sau-va-cham-giao-thong-bi-bat-4793991.html
+ Chunk: Chiều 17/9, Giang bị Công an TP Thủ Đức bắt tạm giam về tội Gây rối trật tự công cộng. Bị can còn bị điều tra về các dấu hiệu hành vi Hủy hoại tài sản và Cố ý gây thương tích. Đập kính, hành hung tài xế ôtô sau va chạm giao thông
+
+
+
+
+
+Video ghi lại cảnh Ngô Đức Giang đập vỡ kính xe, tấn công tài xế. Video: Người dân cung cấp
+Theo điều tra, tối hai hôm trước, Giang lái ôtô trên đường Kha Vạn Cân, TP Thủ Đức, thì xảy ra va chạm với ôtô đi ngược chiều do anh Nguyễn Ngọc Sơn, 35 tuổi, cầm lái. Hai xe dừng lại giữa đường, Giang bước xuống chửi bới anh Sơn, la lớn: "Bước xuống đây, xuống đây".Giang đến chỗ ghế lái của anh Sơn, đánh anh này qua cửa kính đang mở, bẻ kính xe. Tiếp đó, người này về xe lấy cây cờ lê đánh liên tiếp vào cằm, bụng, chân, tay của anh Sơn; mặc nạn nhân và vợ van xin. Ngô Đức Giang tại cơ quan điều tra. Ảnh: Công an cung cấp
+
+Sự việc xảy ra gây ồn ào khu vực, nhiều người chứng kiến. Người dân đã quay video và đăng lên mạng xã hội.Bị cảnh sát triệu tập, Giang thừa nhận hành vi, cho biết mình đi đúng đường nhưng do bị xe anh Sơn va chạm nên bực tức.Cơ quan điều tra đang mở rộng điều tra.Quốc Thắng
+Adding chunk 1/1 for article: Chứng khoán tăng mạnh nhất một tháng
+ URL: https://vnexpress.net/chung-khoan-17-9-vn-index-tang-manh-nhat-mot-thang-4793917.html
+ Chunk: Chỉ số của sàn HoSE lình xình quanh tham chiếu trong cả buổi sáng với biên độ dưới 5 điểm. Phần lớn thời gian giao dịch, đồ thị đạt sắc xanh nhưng thị trường giao dịch trầm lắng. Thanh khoản hết buổi sáng chỉ đạt gần 3.900 tỷ đồng. Không xuất hiện cổ phiếu hay nhóm ngành nào dẫn dắt thị trường, nhà đầu tư cũng chỉ tham gia ở mức thăm dò, cầm chừng.Sang buổi chiều, VN-Index bắt đầu tăng tốc khi các lệnh giao dịch được đổ lên hệ thống nhiều hơn. Lực cầu chiếm ưu thế giúp chỉ số này lấy lại mốc tâm lý quan trọng 1.250 điểm vào khoảng 14h20. Lệnh mua chủ động xuất hiện nhiều hơn, thị trường tiếp tục tích lũy trong phiên ATC.Chốt phiên, VN-Index đóng cửa ở sát 1.259 điểm, tăng gần 19,7 điểm so với hôm qua. Đây là mức tích lũy mạnh nhất kể từ phiên 16/8, đưa chứng khoán trở lại gần với vùng giá đầu tuần trước.Số lượng cổ phiếu tăng giá áp đảo so với bên giảm, lần lượt đạt 312 mã và 88 mã. Đóng góp tích cực nhất là VHM, VCB, BID, TCB, VIC. Ba nhóm cổ phiếu dẫn dắt dòng tiền cũng là các ngành góp điểm nhiều nhất cho chỉ số chung, gồm bất động sản, chứng khoán và ngân hàng.Bảng điện bất động sản hôm nay được phủ hầu hết sắc xanh. Nổi bật nhất là VHM và PDR khi lần lượt tăng 5,4% và 5,1%. Ngoài ra nhiều mã có thanh khoản tốt như DIG, DXG, VRE, HDG, VIC, VCG... cũng tích lũy khoảng 2-4%.Trong các mã hút dòng tiền nhất ngành địa ốc, NVL có diễn biến trái chiều. Cổ phiếu này diễn biến tiêu cực trong nửa cuối buổi sáng, có lúc thấp hơn tham chiếu 4,9%. Tuy nhiên sang buổi chiều, lực cầu trở lại đã hỗ trợ cho thị giá NVL và chốt phiên ở mức tham chiếu 11.200 đồng.Diễn biến trên xảy ra sau khi Sở Giao dịch chứng khoán TP HCM (HoSE) quyết định đưa cổ phiếu NVL vào diện cảnh báo. Nguyên nhân là doanh nghiệp này chậm công bố báo cáo tài chính bán niên đã soát xét quá 15 ngày so với thời hạn quy định. Tuần trước, HoSE cũng đưa cổ phiếu này vào danh sách không đủ điều kiện giao dịch ký quỹ (margin).Novaland cho biết trong 6 tháng đầu năm, doanh nghiệp này triển khai nhiều kế hoạch, chương trình hoạt động cùng lúc như tái khởi động các dự án, hoàn thiện và bàn giao sản phẩm, bàn giao giấy chứng nhận cho cư dân. Do đó, giao dịch và số lượng hồ sơ chứng từ tăng cao giữa công ty mẹ và các công ty con, làm chậm quá trình hoàn thiện báo cáo tài chính. Novaland nói đang nỗ lực làm việc với đơn vị kiểm toán để sớm công bố thông tin.Ở nhóm chứng khoán và ngân hàng, tất cả mã đạt thanh khoản trăm tỷ đều tăng giá. Nổi bật nhất là HCM, VCI, FTS, MBB, VPB, TCB...Thanh khoản cải thiện trong buổi chiều nhưng tổng lại chỉ nhích nhẹ so với hôm qua, đạt trên 13.500 tỷ đồng. Điểm tích cực là nhà đầu tư nước ngoài tăng giá trị mua ròng, ghi nhận khoảng 525 tỷ đồng, tâm điểm nằm ở VHM và FPT.Tất Đạt
+Adding chunk 1/2 for article: Áp thấp nhiệt đới vào Biển Đông
+ URL: https://vnexpress.net/ap-thap-nhiet-doi-vao-bien-dong-4793655.html
+ Chunk: Trung tâm Dự báo Khí tượng Thủy văn quốc gia cho biết lúc 10h, tâm áp thấp nhiệt đới trên vùng biển phía đông khu vực Bắc Biển Đông, duy trì cấp 7 dù vừa ma sát với đảo, giật tăng hai cấp. Với tốc độ 20 km/h và theo hướng tây, đến 10h ngày mai nó sẽ mạnh lên thành bão với sức gió 74 km/h (cấp 8) khi cách quần đảo Hoàng Sa khoảng 320 km. Bão sau đó chếch xuống phía nam, tốc độ nhanh hơn (25 km/h), đến 10h ngày 19/9 khi ở phía tây quần đảo Hoàng Sa thì mạnh lên cấp 9, sức gió tối đa 88 km/h, giật tăng hai cấp. Trong 48 đến 72 giờ tiếp theo, bão có khả năng đổi hướng chếch lên bắc, tốc độ chậm hơn 10 km/h. Đài khí tượng Nhật Bản nhận định vào Biển Đông áp thấp nhiệt đới sẽ mạnh lên thành bão. Bão đi ngang theo hướng tây đến giữa Biển Đông rồi chếch lên phía bắc. Cơn bão không quá mạnh, sức gió gần tâm dao động 65-72 km/h. Dự báo đường đi và khu vực ảnh hưởng của áp thấp nhiệt đới lúc 10h ngày 17/9. Ảnh: NCHMF
+
+Ông Nguyễn Văn Hưởng, Trưởng phòng Dự báo thời tiết, Trung tâm Dự báo Khí tượng Thủy văn quốc gia, cho biết vị trí hình thành cơn áp thấp nhiệt đới mới gần giống bão Yagi. Tuy nhiên, do điều kiện môi trường không thuận lợi, phải chia sẻ năng lượng với bão Pulasan đang ở Tây Bắc Thái Bình Dương nên khi vào Biển Đông áp thấp nhiệt đới không mạnh ngay thành bão mà phải mất 1-2 ngày.Ngoài ra, do chịu ảnh hưởng của dòng dẫn đường quy mô lớn và khả năng chịu tác động của không khí lạnh vào cuối tuần, đường đi của áp thấp nhiệt đới sẽ phức tạp hơn so với bão Yagi.Theo ông Hưởng, áp thấp nhiệt đới sau khi mạnh lên thành bão có hai kịch bản di chuyển. Thứ nhất, nó sẽ đi thẳng vào Trung Trung Bộ. Thứ hai, bão sẽ đổi sang hướng tây tây bắc và khả năng ảnh hưởng tới Bắc Bộ, Bắc Trung Bộ.Do ảnh hưởng của áp thấp nhiệt đới, vùng biển phía đông khu vực Bắc Biển Đông có gió mạnh cấp 6-7, vùng gần tâm bão đi qua cấp 8, giật cấp 10, sóng biển cao 2-4 m; từ ngày 17/9 sóng biển cao 3-5 m.
+
+
+
+
+
+
+
+
+
+
+
+
+Hàng loạt trụ điện ngã trên quốc lộ 18, TP Cẩm Phả, Quảng Ninh sau bão Yagi. Ảnh: Giang Huy
+
+10 ngày trước, bão Yagi đổ bộ Quảng Ninh với sức gió mạnh nhất cấp 14, các nơi khác cấp 12-13, giật cấp 17. Yagi hình thành từ áp thấp nhiệt đới ở phía đông của Philippines, sau đó vào Biển Đông, mạnh lên thành siêu bão chỉ trong 48 giờ. Vượt qua eo biển bán đảo Lôi Châu và Hải Nam (Trung Quốc) vào vịnh Bắc Bộ, sức gió chỉ giảm 1-2 cấp.Hoàn lưu sau bão Yagi kết hợp với dải hội tụ nhiệt đới có trục qua Bắc Bộ gây mưa lớn, lũ nhiều sông vượt kỷ lục tồn tại hơn 50 năm. Hơn 70.000 hộ dân ở Yên Bái, Lào Cai, Thái Nguyên, Bắc Giang, Bắc Ninh, Hà Nội bị ngập. Hiện nhiều vùng trũng ven sông Hồng, Thái Bình, sông Bùi, sông Tích nước vẫn ngập đến nóc nhà, dự kiến duy trì 7-9 ngày nếu thời tiết không xấu đi.Thống kê đến chiều 17/9, bão lũ đã làm 291 người chết, 38 người mất tích, 1.922 người bị thương. Thiệt hại vật chất khoảng 40.000 tỷ đồng khiến GDP năm nay thấp hơn 0,15% so với kịch bản trước đó.Từ đầu năm, Biển Đông đã có ba cơn bão.
+Adding chunk 2/2 for article: Áp thấp nhiệt đới vào Biển Đông
+ URL: https://vnexpress.net/ap-thap-nhiet-doi-vao-bien-dong-4793655.html
+ Chunk: Cơ quan khí tượng dự báo mùa mưa bão năm nay có 9-11 cơn bão, áp thấp nhiệt đới trên Biển Đông, tập trung vào miền Trung từ nay đến tháng 11. Cơ quan khí tượng dự báo mùa mưa bão năm nay có 9-11 cơn bão, áp thấp nhiệt đới trên Biển Đông, tập trung vào miền Trung từ nay đến tháng 11. Gia Chính
+Adding chunk 1/1 for article: Nhà dân ở TP HCM được xây tầng hầm trở lại
+ URL: https://vnexpress.net/nha-dan-o-tp-hcm-duoc-xay-tang-ham-tro-lai-4793866.html
+ Chunk: Nội dung nêu trong hai quyết định vừa UBND TP HCM ban hành nhằm tháo gỡ ách tắc cấp phép xây dựng tầng hầm tại các dự án nhà ở riêng lẻ, thấp tầng trên địa bàn thành phố.Cùng với dự án nhà ở riêng lẻ, chung cư, các công trình dịch vụ, công cộng và trụ sở, công trình xây dựng trong các khu chế xuất, khu công nghiệp, khu công nghệ cao... cũng được xây tầng hầm nhưng phải phù hợp quy chuẩn, tiêu chuẩn xây dựng. Khu nhà phố tại phường Long Trường, TP Thủ Đức, tháng 11/2022. Ảnh: Quỳnh Trần
+
+Số tầng hầm và vị trí được xác định cụ thể trong đồ án quy hoạch chi tiết, bản vẽ xin phép xây dựng, thiết kế cơ sở, các quy chuẩn kỹ thuật quốc gia về quy hoạch xây dựng, tiêu chuẩn chuyên ngành, quy chế quản lý kiến trúc, thiết kế đô thị... Việc xây dựng ngầm phải đảm bảo các quy chuẩn, ranh giới, giấy phép xây dựng, đảm bảo an toàn cho cộng đồng, bản thân công trình và công trình lân cận...Trước đây, việc cấp phép xây công trình có tầng hầm chủ yếu căn cứ quy chuẩn quốc gia về quy hoạch, tiêu chuẩn thiết kế xây công trình có tầng hầm, Nghị định số 39. Tuy nhiên, hơn nửa năm qua, quận, huyện tại TP HCM không cấp phép cho công trình có tầng hầm. Nguyên nhân bắt nguồn từ việc Bộ Xây dựng "tuýt còi" hoạt động quản lý xây dựng nhà ở riêng lẻ có nhiều tầng, nhiều căn hộ trên địa bàn.Để tháo gỡ, Sở Quy hoạch - Kiến trúc đã đề nghị bổ sung nội dung quản lý xây dựng công trình có tầng hầm trong quy chế quản lý kiến trúc TP HCM và quản lý quy hoạch không gian ngầm cho các đồ án quy hoạch phân khu (1/2.000). Việc này nhằm làm cơ sở giải quyết cấp phép xây công trình có tầng hầm hoặc lập quy hoạch chi tiết xây dựng, quy hoạch tổng mặt bằng.Theo cơ quan này, nhu cầu xây dựng công trình nhà ở riêng lẻ có tầng hầm của người dân trên địa bàn rất lớn, đặc biệt là tại các quận trung tâm. Từ 2004 đến quý 1 năm nay, thành phố đã cấp giấy phép 1.600 công trình nhà ở riêng lẻ có tầng hầm.Lê Tuyết
+Adding chunk 1/1 for article: Mưa suốt đêm, Phú Quốc có nơi ngập gần một mét
+ URL: https://vnexpress.net/mua-suot-dem-phu-quoc-co-noi-ngap-gan-mot-met-4793816.html
+ Chunk: Chị Xuân, nhà ở đường Trần Phú, phường Dương Đông, cho biết từ tối qua xuất hiện mưa lớn kéo dài 7-8 giờ khiến nước ở khu vực lên nhanh. Nhiều tuyến đường trung tâm thành phố đều ngập sâu như: Nguyễn Trung Trực, Cách Mạng Tháng 8, Trần Hưng Đạo...
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Phú Quốc ngập
+
+
+
+
+
+Nước ngập sâu ở một số nhà người dân tại phường Dương Đông. Video: Người dân cung cấp
+Khu phố chỗ chị Xuân ở nhiều nơi ngập hơn nửa mét, cá biệt một số chỗ ngập khoảng một mét. Trong đêm người dân phải chạy đua di dời đồ đạc. Sáng nay, mưa giảm nhưng nước vẫn chưa rút.Đường ngập vào sáng sớm khiến đi lại của người dân và học sinh đến trường gặp khó khăn, phải bì bõm trong nước. Ông Nguyễn Văn Thế, nhà ở khu phố 10, phường Dương Đông, cho biết các tuyến đường quanh nhà đã "thất thủ" từ sáng nay và không có dấu hiệu nước rút vì mưa đang tiếp diễn. Mưa ngập ôtô ở khu vực đường Cách Mạng Tháng 8, phường Dương Đông. Ảnh: Người dân cung cấp
+
+Chính quyền Phú Quốc đã điều lực lượng quân đội, công an, dân quân tới hỗ trợ di dời người và tài sản ở một số khu vực nước lớn.Theo đài khí tượng thủy văn Kiên Giang, từ tối qua đến sáng nay TP Phú Quốc mưa rất to, nhất là khu vực Dương Đông, Cửa Cạn. Dự báo mưa còn kéo dài trong hôm nay với lượng nước từ 5-10 mm/h, có nơi lên 20 mm/h; vùng biển Kiên Giang mưa gió giật cấp 7-8, sóng cao 1,5-3 m.Hai hôm trước, tàu cao tốc từ đất liền đi Phú Quốc, đảo Nam Du ngưng chạy do thời tiết xấu, hiện chưa hoạt động lại. Trên đường Cách Mạng Tháng 8, người dân chế bè để chuyển đồ đạc. Ảnh: Người dân cung cấp
+
+Phú Quốc là thành phố thu hút nhiều du khách. Những năm qua địa phương có tốc độ đô thị hóa nhanh, nhiều nhà cửa, công trình lớn được xây dựng thu hẹp ao hồ, sông suối, hệ thống thoát nước. Do đó thành phố thường bị ngập cục bộ khi mưa lớn, ảnh hưởng đời sống người dân, kinh tế và du lịch.Tại huyện Bù Gia Mập, tỉnh Bình Phước, đêm 16 rạng sáng 17/9 có mưa lớn khiến nhiều con suối dâng cao. Nước từ thượng nguồn đổ về gây ngập các khu dân cư, nhiều tuyến đường, khiến giao thông bị chia cắt. Mực nước dâng cao ở cầu Đăk Ơ trên quốc lộ 14C. Ảnh: Văn Trăm
+
+Trên quốc lộ 14C nối Đông Nam Bộ với các tỉnh Tây Nguyên, cầu Đăk Ơ đoạn giáp ranh xã Đắk Ơ và xã Bù Gia Mập ngập khoảng một m. Lực lượng chức năng phải chốt chặn ngăn xe qua cầu, đồng thời hướng dẫn người dân đi đường vòng, đường tránh để đảm bảo an toàn.Mưa lũ cũng khiến nhiều cầu, đường liên xã Đăk Ơ, Bù Gia Mập... của huyện bị sạt lở, gây nguy hiểm cho người đi đường. Theo Ban Chỉ huy phòng chống thiên tai và tìm kiếm cứu nạn huyện Bù Gia Mập, hiện nhiều hộ dân nằm trong vùng bị ngập đã được sơ tán đến khu vực an toàn.Ngọc Tài - Văn Trăm
+Adding chunk 1/1 for article: Đề xuất nghỉ Tết Ất Tỵ 9 ngày
+ URL: https://vnexpress.net/de-xuat-nghi-tet-at-ty-9-ngay-4793734.html
+ Chunk: Bộ Lao động Thương binh và Xã hội vừa gửi văn bản xin ý kiến 16 cơ quan, bộ ngành về phương án nghỉ Tết Âm lịch 2025 trước khi trình Thủ tướng quyết định. Cơ quan này đề xuất nghỉ hai ngày trước và ba ngày sau Tết, từ 26 tháng chạp năm Giáp Thìn đến hết mùng 5 tháng giêng Ất Tỵ, tức từ thứ bảy ngày 25/1 đến hết chủ nhật 2/2/2025.Nếu phương án được thông qua, công chức, lao động cả nước sẽ nghỉ lễ kéo dài 9 ngày gồm 5 ngày nghỉ chính thức và 4 ngày nghỉ cuối tuần của hai tuần liên tiếp. Người dân Tứ Liên (Hà Nội) chăm sóc quất bán dịp Tết năm 2019. Ảnh: Giang Huy
+
+Dịp Quốc khánh năm 2025, Bộ Lao động Thương binh và Xã hội đề xuất hai phương án. Thứ nhất, nghỉ hai ngày gồm Quốc khánh 2/9 và một ngày liền kề trước. Công chức, lao động sẽ nghỉ từ thứ bảy 30/8/2025 đến hết thứ ba 2/9/2025. Kỳ nghỉ dài bốn ngày gồm hai ngày nghỉ chính thức và hai ngày nghỉ hàng tuần. Phương án hai là nghỉ hai ngày thứ ba và thứ tư 2-3/9/2025.Cơ quan soạn thảo chọn phương án một, nghỉ bốn ngày để kỳ lễ liên tục, kéo dài, giúp người lao động có thời gian tái tạo sức, kích cầu du lịch, thúc đẩy tăng trưởng kinh tế. Lịch nghỉ Tết Âm lịch theo đề xuất của Bộ Lao động Thương binh và Xã hội. Đồ họa: Đăng Hiếu
+
+Việc xin ý kiến các bộ ngành về phương án nghỉ Tết, Quốc khánh nhằm thực hiện theo luật. Bộ luật Lao động năm 2019 bổ sung quy định hàng năm căn cứ vào điều kiện thực tế, Thủ tướng quyết định cụ thể ngày nghỉ Tết Âm lịch và ngày Quốc khánh. Nếu ngày nghỉ chính thức trùng với ngày nghỉ hàng tuần sẽ áp dụng nguyên tắc liền kề hoặc hoán đổi để người dân có kỳ nghỉ kéo dài.Việt Nam có tổng cộng 11 ngày nghỉ lễ chính thức trong năm, gồm Tết Dương lịch một ngày, Tết Âm lịch 5 ngày, giỗ Tổ Hùng Vương một ngày, dịp 30/4-1/5 nghỉ hai ngày và Quốc khánh hai ngày.Từ năm 2021, cả nước có thêm một ngày nghỉ lễ dịp Quốc khánh, tùy từng năm mà Chính phủ chọn nghỉ vào 1/9 hoặc 3/9. Người nước ngoài làm việc tại Việt Nam được nghỉ thêm một ngày Tết cổ truyền và ngày Quốc khánh của nước họ.Hồng Chiêu
+Adding chunk 1/2 for article: Trạm BOT ở cửa ngõ TP HCM ùn ứ ngày đầu thu phí
+ URL: https://vnexpress.net/tram-bot-o-cua-ngo-tp-hcm-un-u-ngay-dau-thu-phi-4793821.html
+ Chunk: Từ 0h ngày 17/9, trạm BOT Phú Hữu bắt đầu thu phí hoàn vốn cho dự án đường nối Nguyễn Duy Trinh vào Khu công nghiệp Phú Hữu. Trạm đặt trên đường Nguyễn Thị Tư, mỗi chiều gồm hai làn thu phí tự động và một làn hỗn hợp.Phương án thu cùng mức phí (vé lượt thấp nhất 14.000 đồng, cao nhất 110.000 đồng, áp dụng đến cuối năm nay) đã được Công ty cổ phần Xi măng Vicem Hà Tiên (nhà đầu tư) công bố trước đó, song sáng nay nhiều tài xế ôtô chưa quen, bất ngờ khi tài khoản giao thông bị trừ tiền khi qua làn tự động. Xe chạy qua trạm BOT Phú Hữu sáng 17/9. Ảnh: Gia Minh
+
+Trong khi đó, một số người không đồng tình việc thu phí xe vào khu dân cư gần đó với lý do nhà họ chỉ cách trạm vài trăm mét. Mặt khác, nhiều phụ huynh phải đưa đón con đến trường mỗi ngày dẫn đến rất tốn kém khi bị thu phí. Vì vậy, họ dừng xe phản ứng khiến đường Nguyễn Thị Tư ùn ứ cục bộ.CSGT, Công an TP Thủ Đức sau đó có mặt xử lý, phân luồng tránh ùn tắc. Nhà đầu tư cũng đã huy động nhân viên phối hợp các đơn vị chức năng hướng dẫn xe qua lại và giải thích cho những trường hợp chưa đồng thuận thu phí. Xe ùn ứ cục bộ trước trạm BOT Phú Hữu, sáng 17/9. Ảnh: Hạ Giang
+
+Một lãnh đạo Sở Giao thông Vận tải TP HCM cho biết hôm nay là ngày đầu BOT Phú Hữu thu phí nên khó tránh khỏi việc tài xế chưa quen hoặc xảy ra phát sinh. Sở đã giao Trung tâm Quản lý hạ tầng giao thông đường bộ phối hợp các bên liên quan làm việc, giải quyết các bất cập nhằm đảm bảo hài hòa lợi ích giữa người dân và nhà đầu tư.Dự án đường nối Nguyễn Duy Trinh vào Khu Công nghiệp Phú Hữu được TP HCM ký hợp đồng với nhà đầu tư thực hiện theo hình thức BOT (xây dựng - kinh doanh - chuyển giao) vào năm 2012. Công trình có tổng mức đầu tư khoảng 461 tỷ đồng với quy mô xây tuyến đường dài khoảng 2,6 km, rộng 30 m.
+
+
+
+
+
+
+
+
+
+
+
+
+Vị trí trạm BOT Phú Hữu ở TP Thủ Đức. Đồ họa: Đăng Hiếu
+
+Theo phương án thu phí được nhà đầu tư công bố, trạm miễn, giảm cho một số nhóm gồm xe máy, ôtô chuyên dùng như cứu thương, cứu hỏa, xe cảnh sát... Ngoài ra, ôtô dưới 12 chỗ không kinh doanh, có hộ khẩu thường trú hoặc tạm trú trên 6 tháng khu vực các đường Nguyễn Thị Tư, Đặng Thanh Hiếu được miễn phí qua trạm.Từ 1/1/2025 đến 16/9/2025 xe qua trạm sẽ đóng phí cao hơn. Trong đó, vé lượt áp dụng 15.000-120.000 đồng. Vé tháng từ 450.000 đồng đến 3,6 triệu đồng. Vé quý từ 1.215.000 đồng đến 9.720.000 đồng. Tiếp đến, mức phí qua trạm tiếp tục điều chỉnh với giá vé lượt thấp nhất 17.000 đồng, cao nhất 133.000 đồng. Vé tháng 510.000 đồng đến gần 4 triệu đồng; vé quý từ 1.377.000 đồng tới 10.773.000 đồng.
+Adding chunk 2/2 for article: Trạm BOT ở cửa ngõ TP HCM ùn ứ ngày đầu thu phí
+ URL: https://vnexpress.net/tram-bot-o-cua-ngo-tp-hcm-un-u-ngay-dau-thu-phi-4793821.html
+ Chunk: rọng 4-10 tấn
+30.000
+900.000
+2.430.000
+4
+Ôtô tải tải trọng 10-18 tấn; container 20 feet
+54.000
+1.620.000
+4.374.000
+5
+Ôtô tải tải trọng trên 18 tấn; container 40 feet
+110.000
+3.300.000
+8.910.000
+TP HCM đã triển khai 7 dự án BOT, gồm cầu đường Bình Triệu 2 (giai đoạn một) đã kết thúc thu phí hoàn vốn. Mức phí áp dụng tại trạm Phú Hữu từ ngày 17/9 đến 31/12/2024
+
+STT
+Loại xe
+Mức giá
+Vé lượt
+Vé tháng
+Vé quý
+1
+Ôtô dưới 12 chỗ; ôtô tải trọng dưới 2 tấn, xe buýt
+14.000
+420.000
+1.134.000
+2
+Ôtô 12-30 chỗ; ôtô tải trọng 2-4 tấn
+21.000
+630.000
+1.701.000
+3
+Ôtô trên 31 chỗ; ôtô tải trọng 4-10 tấn
+30.000
+900.000
+2.430.000
+4
+Ôtô tải tải trọng 10-18 tấn; container 20 feet
+54.000
+1.620.000
+4.374.000
+5
+Ôtô tải tải trọng trên 18 tấn; container 40 feet
+110.000
+3.300.000
+8.910.000
+TP HCM đã triển khai 7 dự án BOT, gồm cầu đường Bình Triệu 2 (giai đoạn một) đã kết thúc thu phí hoàn vốn. Ngoài BOT Phú Hữu, ba dự án khác đang thu phí, gồm BOT An Sương - An Lạc, cầu Phú Mỹ, mở rộng xa lộ Hà Nội và quốc lộ 1. Ngoài ra, tại thành phố còn hai dự án khác đang làm thủ tục dừng hợp đồng, gồm: đường nối Võ Văn Kiệt đến cao tốc TP HCM - Trung Lương và cầu đường Bình Triệu 2 (giai đoạn hai).Gia Minh
+Adding chunk 1/2 for article: Đất đấu giá huyện Phúc Thọ lên 75 triệu đồng một m2
+ URL: https://vnexpress.net/dat-dau-gia-huyen-phuc-tho-len-75-trieu-dong-mot-m2-4793727.html
+ Chunk: Trung tâm Phát triển quỹ đất huyện Phúc Thọ tổ chức bán đấu giá 13 thửa đất tại khu Dộc Tranh, xã Trạch Mỹ Lộc vào ngày 16/9. Các lô đất có ký hiệu ĐG44 đến ĐG62 với diện tích 108 - 129 m2, giá khởi điểm đều từ 23,4 triệu đồng một m2.Theo thống kê, cuộc đấu giá này có 140 hồ sơ đăng ký, tương ứng tỷ lệ gần 11 hồ sơ cùng quan tâm một lô đất. Kết thúc buổi đấu giá, 13 lô đều được bán thành công. Trong đó, lô trúng cao nhất với giá 75 triệu đồng một m2, lô thấp nhất là 28,6 triệu một m2.Như vậy, giá đất tại khu Dộc Tranh, xã Trạch Mỹ Lộc tiếp tục tạo đỉnh mới chỉ trong vòng hơn nửa tháng qua bất chấp nhiều ý kiến trái chiều về các cuộc đấu giá đất tại loạt huyện ven Hà Nội. Khu đất đấu giá Dộc Tranh, xã Trạch Mỹ Lộc, huyện Phúc Thọ. Ảnh: Anh Tú
+
+Tại phiên đấu giá hồi cuối tháng 8, 30 lô đất tại khu này được bán với giá trúng cao nhất với gần 60 triệu đồng một m2. Khi đó, nhiều nhà đầu tư cùng tham gia cho rằng mức này cao hơn nhiều so với giá trị thực tế, khi các lô đất mặt tiền ở các khu vực lân cận chỉ khoảng 40-50 triệu đồng một m2.Tuy nhiên, người đã trả mức giá gần 60 triệu một m2 này khẳng định không bỏ cọc bởi đã nghiên cứu kỹ giá thị trường, lô đất nằm ở vị trí góc đẹp, được hưởng lợi về hạ tầng giao thông trong tương lai.Đến hôm 10/9, Phúc Thọ tiếp tục tổ chức đấu giá thêm 30 lô đất cũng tại khu Dộc Tranh. Tại sự kiện có khoảng 180 khách hàng tham gia này, lô đất trúng đấu giá cao nhất là 69,8 triệu đồng một m2. Theo một số môi giới ở địa phương, lô đất này cũng đã được sang tay ngay sau đó với giá chênh hàng trăm triệu đồng.Hơn 1 tháng qua, các cuộc đấu giá đất tại loạt huyện ven như Thanh Oai, Hoài Đức đã gây xôn xao thị trường với mức trúng cao kỷ lục trên 100 triệu đồng một m2. Trong đó, một lô đất tại xã Tiền Yên, huyện Hoài Đức có mức trúng được đẩy lên tới hơn 133 triệu một m2. Sau đó, các cơ quan quản lý đã yêu cầu kiểm tra, chấn chỉnh công tác đấu giá đất trên địa bàn thành phố Hà Nội.Hiện tại, trong số 68 lô đất trúng đấu giá ở huyện Thanh Oai, mới có 13 nhà đầu tư nộp tiền dù đã hết thời hạn thanh toán. Các lô này chỉ có giá trúng từ 51,6 triệu đến 55 triệu một m2. Còn 55 lô trúng từ 80 triệu đến hơn 100 triệu đồng một m2 đều bỏ cọc, không nộp tiền.Sang tháng 10, Phúc Thọ sẽ tổ chức đấu giá 28 thửa đất tại xã Tam Hiệp và xã Thọ Lộc. Trong đó, 3 thửa đất tại khu Gạc Chợ, xã Tam Hiệp có giá khởi điểm từ 66,7 triệu đồng một m2. Tương ứng người tham gia đấu giá cần đặt trước từ gần 1,8 tỷ đến hơn 2 tỷ đồng.25 thửa đất khu Đồng Phươm, xã Lộc Thọ có giá khởi điểm 19,8 triệu đồng một m2, tương ứng tiền đặt trước từ 532 triệu - 746 triệu đồng mỗi lô (diện tích 134 - 188,4 m2). Tại phiên đấu giá ngày 10/9, 9 thửa đất ở Đồng Phươm, xã Thọ Lộc ghi nhận mức trúng cao nhất là 25,6 triệu một m2, thấp nhất 23,4 triệu đồng một m2.Phúc Thọ là huyện ngoại thành nằm ở phía Tây Bắc, cách trung tâm TP Hà Nội gần 40 km. Huyện này rộng gần 118 km2 hiện có 1 thị trấn và 20 xã, với dân số khoảng 200.000 người.
+Adding chunk 2/2 for article: Đất đấu giá huyện Phúc Thọ lên 75 triệu đồng một m2
+ URL: https://vnexpress.net/dat-dau-gia-huyen-phuc-tho-len-75-trieu-dong-mot-m2-4793727.html
+ Chunk: Gần đây nhất hôm 9/9, Tập đoàn T&T khởi công xây dựng hạ tầng kỹ thuật cụm công nghiệp Nam Phúc Thọ - giai đoạn 1. Gần đây nhất hôm 9/9, Tập đoàn T&T khởi công xây dựng hạ tầng kỹ thuật cụm công nghiệp Nam Phúc Thọ - giai đoạn 1. Dự án này có quy mô 41,7 ha với tổng mức đầu tư gần 780 tỷ đồng nằm ở các xã Tam Hiệp và Ngọc Tảo.Anh Tú
+Adding chunk 1/1 for article: Gần triệu đồng một kg muồm muỗm
+ URL: https://vnexpress.net/gan-trieu-dong-mot-kg-muom-muom-4793462.html
+ Chunk: Chị Hòa, ở quận Gò Vấp, TP HCM, cho biết lúc còn nhỏ ở quê, mẹ chị đi gặt về luôn mang theo một túi muồm muỗm. Khi nướng lên, chúng có mùi thơm, vị béo ngậy. "Giờ đã lớn và đang sống ở TP HCM, tôi vẫn sẵn sàng chi 400.000 đồng để mua nửa ký cho cả nhà thưởng thức lại hương vị xưa", chị nói.Trên các chợ trực tuyến, loại này được bán với giá từ 500.000-700.000 đồng một kg tùy loại. Đặc biệt, muỗm non giá tới 850.000 đồng một kg, tăng 35% so với năm ngoái và gấp đôi năm 2022. Muỗm xanh được chị Nga đóng gói để giao cho khách. Ảnh: Đinh Nga
+
+Nam Anh, người bán muồm muỗm ở TP HCM, cho biết loại này rất hiếm nên giá tăng cao. Mỗi tháng, cô chỉ nhập được hai lần, mỗi lần 6-7 kg, không đủ cho khách đặt trước. Gần đây, bão lũ tại miền Bắc khiến nguồn cung càng giảm, giá đi lên.Chuyên kinh doanh côn trùng này ở Hà Nội, chị Hoài nói loại muỗm sống có lúc giá lên đến 900.000 đồng một kg vì khan hàng, đắt hơn cấp đông từ 100.000-200.000 đồng.Tại Mường Lát (Thanh Hóa), chị Đỗ Thị Nga, đầu mối thu gom muỗm, nói mỗi ngày bán từ 10-20 kg loại tươi. "Tôi chỉ phân phối cho miền Bắc, giá sỉ khoảng 400.000 đồng một kg chưa gồm phí vận chuyển," chị cho biết.Theo chị Nga, muỗm xanh chỉ có từ tháng 8 đến tháng 9. Người dân bắt chúng vào ban đêm, dùng đèn để dụ. Sau khi bắt, chúng được sơ chế, đóng gói hút chân không. Việc sử dụng nhiều thuốc bảo vệ thực vật khiến muỗm ngày càng hiếm. Muỗm xanh đã cắt cánh. Ảnh: Thanh Hoài
+
+Nói với VnExpress, GS TS Bùi Công Hiển, Hội Côn trùng học Việt Nam, cho biết ở Việt Nam có hai loài muồm muỗm gồm loại xanh (Euconocephalus incertus) và nâu (Euconocephalus broughtoni). Đến nay, chưa có báo cáo về việc muỗm gây hại mùa màng, chỉ ghi nhận ở cào cào di cư. Dù vậy, cả hai loài này đều thuộc bộ cánh thẳng (Orthoptera).Muỗm đã được khai thác làm thực phẩm từ lâu ở Việt Nam. Tại Mù Cang Chải, chúng còn có tên "tôm bay" và được quảng bá như một đặc sản.Tuy nhiên, GS Hiển cảnh báo nếu khai thác quá mức, loài muỗm có thể suy giảm hoặc đứng trước nguy cơ tuyệt chủng. Ông đề xuất nuôi muỗm theo trang trại, giúp kiểm soát nguồn thức ăn và hạn chế nguy cơ nhiễm độc từ các cây chứa chất độc mà muỗm có thể ăn ngoài tự nhiên.Ông cũng cảnh báo rằng ăn côn trùng tự nhiên, bao gồm muỗm, có thể tiềm ẩn nguy cơ ngộ độc. Điều này có thể do côn trùng ăn phải lá độc, bị nấm hoặc vi khuẩn xâm nhập. Việc buôn bán côn trùng khai thác tự nhiên cũng thiếu kiểm soát về an toàn thực phẩm.Thi Hà
+Adding chunk 1/1 for article: Mưa lớn 'nghìn năm có một' tấn công bang Mỹ
+ URL: https://vnexpress.net/mua-lon-nghin-nam-co-mot-tan-cong-bang-my-4793660.html
+ Chunk: Thị trấn Carolina Beach ven biển ở bang Bắc Carolina ngày 16/9 được đặt trong tình trạng khẩn cấp sau trận mưa lịch sử trút xuống 457 mm nước trong 12 giờ. Cơ quan Thời tiết Quốc gia Mỹ cho biết đây là hiện tượng "nghìn năm có một". "Đây có lẽ là trận lụt tồi tệ nhất mà dân địa phương từng chứng kiến", Bruce Oakley, quan chức thị trấn du lịch Carolina Beach, nói. "Chúng tôi phải cứu người khỏi ôtô, khỏi nhà hay nơi làm việc. Cơ quan cứu hộ tiếp nhận hàng chục cuộc gọi". Mưa lớn 'nghìn năm có một' tấn công bang Mỹ
+
+
+
+
+
+Mưa lớn gây ngập lụt nghiêm trọng ở Carolina Beach, Bắc Carolina, Mỹ. Video: X/Wright
+Trường tiểu học địa phương đã phải đóng cửa, cho học sinh ra về sớm sau khi nước tràn vào các lớp học. Giới chức cứu hộ, cứu hỏa phải đưa nhiều em về nhà vì một số tuyến đường ngập đến 91 cm.Các nơi khác trong khu vực cũng ghi nhận lượng mưa hơn 300 mm trong 12 giờ, nhiều nhất trong 200 năm.Lisa và Gary Hollon, sống ở Kure Beach, cách Carolina Beach khoảng 5 km, cho biết thị trấn này chưa từng bị ngập sau 15 năm sinh sống tại đây. "Mưa gió đột ngột nổi lên vào sáng sớm. Tầng một nhà chúng tôi ngập 15 cm. Chúng tôi không chuẩn bị gì, vì khu vực chưa từng bị ngập lụt trước đây", Lisa Hollon nói. Một thanh niên trèo ván lướt sóng tại điểm ngập lụt ở Bắc Carolina. Ảnh: BBC
+
+Lượng mưa ở hạt Brunswick lân cận có lúc là hơn 127 mm một giờ. Thị trấn Sunny Point hứng lượng mưa 228 mm trong ba giờ, lớn hơn lượng mưa trung bình một tháng. "Giới chức đang hỗ trợ nhiều người mắc kẹt trong xe, trong nhà", văn phòng cảnh sát khu vực thông báo. Ôtô bị nước lũ cuốn trôi tại hạt Brunswick, Bắc Carolina. Ảnh: Cảnh sát Brunswick
+
+Trận mưa lịch sử này là ảnh hưởng của khối áp thấp nằm gần bờ biển, sức gió mạnh nhất 56 km/h, chưa đủ điều kiện để được gọi là bão nhiệt đới hay cận nhiệt đới.Lũ lụt ở Carolina Beach bắt đầu rút vào chiều 16/9 khi áp thấp chuyển đến phía tây khu vực, dự kiến suy yếu và tan vào sáng 18/9. Đường đi của khối áp thấp gây mưa lịch sử tại Bắc Carolina, Mỹ. Đồ họa: CNN
+
+Đức Trung (Theo CNN, USA Today, NBC News)
+Adding chunk 1/2 for article: 8 vị trí chưa thể lưu thông trên các tuyến quốc lộ
+ URL: https://vnexpress.net/8-vi-tri-chua-the-luu-thong-tren-cac-tuyen-quoc-lo-4793695.html
+ Chunk: Sáng 17/9, Cục Đường bộ Việt Nam cho biết các địa phương đã xử lý được 559 điểm sạt lở, thông tuyến nhiều tuyến đường. Tuy nhiên, vẫn còn 8 vị trí, trong đó có hai điểm tại Lào Cai chưa thể thông xe do sạt lở nghiêm trọng và địa hình khó khăn. Dự kiến, các điểm này sẽ được thông xe vào ngày 30/9. Tỉnh Bắc Kạn có một vị trí tắc đường trên quốc lộ 279, đoạn từ trung tâm huyện Ba Bể sang huyện Na Hang, tỉnh Tuyên Quang, do sạt lở taluy dương và taluy âm khối lượng lớn. Dự kiến vị trí này được thông xe từ 25/9.Tỉnh Tuyên Quang có một vị trí ách tắc trên quốc lộ 2C do nền đường xuất hiện cung trượt lớn, nguy cơ đá tảng sạt gây mất an toàn giao thông.Tỉnh Thái Nguyên có một vị trí sụt nền đường do mưa lũ với chiều dài 50 m, bề rộng chiếm gần hết toàn bộ nền mặt đường Hồ Chí Minh qua xã Tân Dương, huyện Định Hóa. Dự kiến hết tháng 9 đường được khôi phục tạm.Tỉnh Cao Bằng có một điểm trên quốc lộ 3 chưa thông xe do nền đường xuất hiện cung trượt lớn, nguy cơ cao về mất an toàn giao thông, có thể xử lý cho thông xe tạm trước 30/9.Tỉnh Nam Định có cầu phao Ninh Cường bị hư hỏng chưa bảo đảm an toàn khai thác sử dụng. Đơn vị quản lý sẽ đánh giá toàn bộ và sửa chữa khắc phục sau khi nước rút. Các phương tiện đã được phân luồng sang quốc lộ 21, 21B và các tuyến đường tỉnh để tránh vị trí này.Tỉnh Quảng Ninh có một đoạn trên quốc lộ 18B tại khu vực Bình Liêu bị sạt lở nền đường và trôi cống. Hiện phương tiện đã được phân luồng sáng quốc lộ 18, 18C, 4B và các tuyến đường tỉnh. Mưa lớn gây sạt lở cầu đường trên quốc lộ 4G qua Sơn La ngày 16/9. Ảnh: Sở GTVT Sơn La
+
+Phần lớn đường ngập, cầu cấm đã khai thác trở lạiSau khi khắc phục, 252/253 điểm ngập nước trên các tuyến đường đã được thông xe. Hiện chỉ còn đầu cầu Kiện Khê trên tuyến tránh thành phố Phủ Lý chưa thể thông xe do ngập lụt diện rộng. Tuy nhiên, giao thông không quá ảnh hưởng do phần lớn phương tiện đã chuyển hướng đi cao tốc Pháp Vân - Cầu Giẽ - Ninh Bình.Giao thông đã cơ bản phục hồi tại các tuyến đường huyết mạch như cầu Đoan Hùng (quốc lộ 2) và cầu Hồ (quốc lộ 38). Bến phà Cồn Nhất (Ninh Bình) cũng đã hoạt động trở lại. Tuy nhiên, do mực nước sông vẫn cao và chảy xiết, hai bến phà Đống Cao và Đại Nội (Nam Định) vẫn phải tạm ngừng khai thác.Cầu Nam Cường (cao tốc Nội Bài - Lào Cai) đang bị lún đường đầu cầu, nứt vỡ lan can cầu, lún sụt bậc lên xuống tại mố M0 và trụ T1. Đơn vị quản lý tuyến đang tiếp tục theo dõi để có giải pháp xử lý.Cao tốc Nội Bài - Lào Cai tại km 249 chiều từ Lai Châu và cửa khẩu Kim Thành về Hà Nội có cung trượt taluy âm làm khoảng nửa mặt đường bị lún sụt. Đơn vị quản lý đường đã rào chắn, cử người trực chốt, các phương tiện lưu thông chậm qua vị trí này.Tuyến Nội Bài - Bắc Ninh, cầu Đông Yên có một số cánh dầm và mối nối dọc bị rạn nứt, nhiều vị trí bong vỡ bêtông, rơi xuống gây nguy hiểm cho người và phương tiện tham gia giao thông.
+Adding chunk 2/2 for article: 8 vị trí chưa thể lưu thông trên các tuyến quốc lộ
+ URL: https://vnexpress.net/8-vi-tri-chua-the-luu-thong-tren-cac-tuyen-quoc-lo-4793695.html
+ Chunk: Đơn vị quản lý tuyến đang theo dõi, xử lý.Những ngày qua, các sở giao thông vận tải và các đơn vị ngành đường bộ đã phối hợp với chính quyền địa phương nhanh chóng khôi phục hạ tầng đường bộ để phục vụ tìm kiếm cứu nạn, bảo đảm vận chuyển hàng hóa thiết yếu phục vụ nhân dân sau mưa lũ. Đơn vị quản lý tuyến đang theo dõi, xử lý.Những ngày qua, các sở giao thông vận tải và các đơn vị ngành đường bộ đã phối hợp với chính quyền địa phương nhanh chóng khôi phục hạ tầng đường bộ để phục vụ tìm kiếm cứu nạn, bảo đảm vận chuyển hàng hóa thiết yếu phục vụ nhân dân sau mưa lũ. Đoàn Loan
+Adding chunk 1/1 for article: Mỹ lần đầu công bố ảnh tàu lặn Titan bị ép nát
+ URL: https://vnexpress.net/my-lan-dau-cong-bo-anh-tau-lan-titan-bi-ep-nat-4793954.html
+ Chunk: Lực lượng Tuần duyên Mỹ ngày 16/9 chia sẻ hình ảnh mảnh đuôi vỡ của tàu lặn Titan tại Bắc Đại Tây Dương dưới độ sâu gần 3.800 m, trong phiên điều trần sẽ diễn ra cho đến ngày 27/9 ở North Charleston, Nam Carolina.Trong ảnh, mảnh đuôi tách khỏi thân tàu, các cạnh nham nhở, một mảnh vỡ của tàu ở lân cận. Các điều tra viên cho biết mảnh vỡ được phát hiện cách địa điểm xác tàu Titanic vài trăm mét sau nhiều ngày tìm kiếm. Mảnh vỡ tàu lặn Titan ở độ sâu gần 3.800 m. Ảnh: Tuần duyên Mỹ
+
+Theo Ủy ban Điều tra Hàng hải, thiết bị điều khiển từ xa đã xác định được vị trí của mảnh đuôi và những mảnh vỡ khác hôm 22/6/2023, cung cấp "bằng chứng kết luận" rằng con tàu bị ép nát. Đây là hiện tượng vật thể bị phá hủy khi chịu áp suất khổng lồ bên ngoài ép vào trong, thay vì hướng ra bên ngoài như một vụ nổ.Thảm kịch cướp đi sinh mạng của Stockton Rush, người sáng lập kiêm giám đốc điều hành công ty vận hành tàu lặn OceanGate; tỷ phú kiêm nhà thám hiểm người Anh Hamish Harding, 58 tuổi; doanh nhân gốc Pakistan Shahzada Dawood, 48 tuổi cùng con trai 19 tuổi, Suleman, đều là công dân Anh; nhà hải dương học quốc tịch Pháp kiêm chuyên gia nổi tiếng về tàu Titanic Paul-Henri Nargeolet, 77 tuổi.Các phần thi thể tìm thấy khớp với 5 người trên tàu thông qua xét nghiệm và phân tích ADN. Trong phiên điều trần, ủy ban đã triệu tập các nhân chứng đầu tiên, trong đó có nhân viên cũ của OceanGate. Các nhà điều tra cũng cho biết nội dung tin nhắn cuối cùng mà tàu Titan gửi đi 6 giây trước khi mất liên lạc. "Đã thả hai khối dằn tàu", là tin nhắn Titan gửi cho tàu mẹ, thông báo tàu đã giảm trọng tải để nổi lên mặt nước. Vài giây sau, Titan phát tiếng "ping" báo hiệu định vị lần cuối, tàu mẹ mất dấu Titan vào sáng 18/6/2023.Trong những ngày tiếp theo, chiến dịch tìm kiếm cứu hộ quốc tế diễn ra tại vùng biển xa xôi cách Newfoundland, Canada vài trăm km về phía đông nam. Tàu lặn Titan trước khi gặp thảm kịch. Ảnh: OceanGate Expeditions
+
+Tuần duyên Mỹ cho hay phiên điều trần sẽ cung cấp thông tin về các sự kiện xảy ra trước tai nạn, đánh giá việc tuân thủ quy định, nhiệm vụ và trình độ của người điều khiển tàu, hệ thống cơ khí và kết cấu con tàu, cơ chế ứng phó khẩn cấp và ngành công nghiệp tàu lặn.Mục đích chính của phiên điều trần là "làm sáng tỏ sự thật xung quanh tai nạn", chủ tịch Ủy ban Điều tra Hàng hải Jason Neubauer cho biết, lưu ý cơ quan này cũng có nhiệm vụ xác định "hành vi sai lầm hoặc sơ suất của các thủy thủ có chứng chỉ hành nghề". "Nếu phát hiện bất kỳ hành vi phạm tội nào, chúng tôi sẽ khuyến nghị Bộ Tư pháp hành động", ông nói. Tàu lặn Titan mất tích thế nào. Bấm vào hình để xem chi tiết
+
+Hồng Hạnh (Theo CNN, AFP)
+Adding chunk 1/2 for article: Ông Trump kể phút được mật vụ bảo vệ trong âm mưu ám sát
+ URL: https://vnexpress.net/ong-trump-ke-phut-duoc-mat-vu-bao-ve-trong-am-muu-am-sat-4793646.html
+ Chunk: "Thật ngoài sức tưởng tượng, nhưng rồi mọi chuyện cũng qua đi. Sở Mật vụ đã làm tốt công việc của họ, bắt giam gã đó. Hy vọng anh ta sẽ ngồi tù lâu. Một gã rất nguy hiểm", cựu tổng thống Mỹ Donald Trump trả lời phỏng vấn hôm 16/9, đề cập vụ ông suýt bị ám sát trong lúc chơi golf ở West Palm Beach, bang Florida một ngày trước đó.Khi đó Trump đang chơi golf cùng vài người bạn. "Mọi thứ đều tốt đẹp ở một nơi tuyệt vời, và rồi đột nhiên chúng tôi nghe thấy tiếng súng nổ. Tôi đoán 4-5 tiếng gì đó", Trump cho hay. "Sở Mật vụ lập tức biết đó là tiếng súng và họ chồm lên che chắn cho tôi". Cựu tổng thống Mỹ Donald Trump tại Sierra Vista, Arizona, ngày 22/8. Ảnh: AP
+
+Đặc vụ sau đó đưa ông Trump lên xe điện chuyên dụng ở sân golf và thuận lợi di chuyển khỏi địa điểm này. "Tôi đi cùng một đặc vụ và người này đã hoàn thành nhiệm vụ một cách tuyệt vời", ông nói. "Tôi rất muốn thực hiện cú đánh cuối cùng vào hố để ghi điểm, nhưng chúng tôi phải rời đi. Điều thú vị là tiếng súng mà tôi nghe thấy thực chất là phản ứng của một mật vụ. Cậu ấy đã phát hiện ra một nòng súng đang chĩa về sân golf, và cậu ấy bắn vào nòng súng. Cậu ấy làm rất tốt phải không? Cậu ấy chỉ nhìn thấy mỗi nòng súng nhưng bắt đầu bắn và chạy về phía mục tiêu".Cựu tổng thống cho biết nghi phạm băng qua đường, lên xe để tẩu thoát, nhưng một người dân thấy khả nghi nên đã lái ôtô đến phía sau xe nghi phạm, chụp ảnh biển số rồi gửi cho văn phòng cảnh sát trưởng. Vị trí của ông Trump và nơi nghi phạm bị phát hiện ở sân golf tại West Palm Beach, Florida ngày 15/9. Đồ họa: AP
+
+"Bây giờ đang có nhiều lời bàn tán về việc này", Trump nói khi được hỏi ông nghĩ gì về hai vụ ám sát nhằm vào bản thân trong hai tháng. "Nhiều người nghĩ đến đảng Dân chủ vì họ cứ gọi tôi là 'mối đe dọa đối với nền dân chủ' và những điều đại loại như vậy. Có vẻ cả hai nghi phạm ám sát đều thuộc phe cánh tả cực đoan. Nên điều tra thêm về nghi phạm trong vụ đầu tiên, vẫn còn nhiều điều chưa sáng tỏ và khá lạ lùng".Theo Trump, cần tăng cường nhân lực cho đội an ninh bảo vệ ông. Cựu tổng thống cũng đã đề cập vấn đề này với ông Joe Biden, khi Tổng thống gọi điện cho người tiền nhiệm sau sự việc. "Ông ấy rất tử tế, gọi điện cho tôi để chắc chắn rằng tôi ổn và hỏi xem tôi có đề xuất gì không. Chúng tôi cần thêm nhân viên an ninh vì mỗi sự kiện của tôi đều có tới 50.000-60.000 người tham dự", ông Trump nói.Nhà Trắng cho biết Tổng thống Biden và ông Trump đã có "cuộc trò chuyện thân tình". Ông Biden bày tỏ nhẹ nhõm khi biết Trump vẫn an toàn và cựu tổng thống cảm ơn vì cuộc gọi. Mỹ công bố video bắt nghi phạm định ám sát ông Trump ở Florida
+
+
+
+
+
+Cảnh sát Mỹ bắt nghi phạm suýt ám sát ông Trump tại Florida hôm 15/9. Video: Văn phòng Cảnh sát trưởng hạt Martin
+Cục Điều tra Liên bang Mỹ (FBI) đã trích xuất thông tin trên điện thoại di động của Ryan Wesley Routh, cho thấy nghi phạm dường như chờ ở khu vực bên ngoài sân golf gần hố số 6 suốt 12 tiếng trước khi bị phát hiện. Ông Trump khi đó đang chơi ở hố số 5.
+Adding chunk 2/2 for article: Ông Trump kể phút được mật vụ bảo vệ trong âm mưu ám sát
+ URL: https://vnexpress.net/ong-trump-ke-phut-duoc-mat-vu-bao-ve-trong-am-muu-am-sat-4793646.html
+ Chunk: rước khi bỏ chạy khỏi hiện trường.Routh ngày 16/9 bị truy tố tội "sở hữu súng dù là người từng bị kết án trọng tội" và "sở hữu khẩu súng bị xóa số seri", đối mặt án tù tối đa 20 năm cho hai tội danh.JD Vance, ứng viên phó tổng thống đảng Cộng hòa, cho biết Trump đã gọi điện cho ông ngay sau sự việc. Giới chức nói rằng nghi phạm "chưa nhìn thấy" cựu tổng thống và không nổ phát súng nào trước khi bỏ chạy khỏi hiện trường.Routh ngày 16/9 bị truy tố tội "sở hữu súng dù là người từng bị kết án trọng tội" và "sở hữu khẩu súng bị xóa số seri", đối mặt án tù tối đa 20 năm cho hai tội danh.JD Vance, ứng viên phó tổng thống đảng Cộng hòa, cho biết Trump đã gọi điện cho ông ngay sau sự việc. "JD, cậu không tin nổi đâu nhưng lại vừa có người định ám sát tôi", phó tướng kể lại lời ông Trump. Sau phút bàng hoàng, Vance bày tỏ vui mừng khi cựu tổng thống vẫn an toàn.Theo Vance, ông Trump thông báo mình vẫn ổn nhưng "hơi tức" vì không thể hoàn thành cú birdie putt (đưa bóng vào lỗ ít hơn một gậy so với số gậy tiêu chuẩn). "Đó là kiểu người mà các bạn muốn trở thành tổng thống Mỹ, đúng không? Người không hề nao núng trước điều gì. Người còn nói đùa sau khi suýt bị ám sát. Không còn nghi ngờ gì về chuyện đó nữa", Vance nói.Huyền Lê (Theo NY Post, Reuters, CNN)
+
+
