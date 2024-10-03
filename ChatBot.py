@@ -26,7 +26,7 @@ db_name = "sample_mflix"
 collection_name = "minh_articles"
 
 crawler_options = {
-    # "VnExpress": VnExpressExcelCrawler,
+    "VnExpress": VnExpressExcelCrawler,
     "Tuổi Trẻ": TuoiTreExcelCrawler,
     "Thanh Niên": ThanhNienExcelCrawler,
     "Dân Trí": DanTriExcelCrawler,
