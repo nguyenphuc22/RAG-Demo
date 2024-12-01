@@ -1,7 +1,7 @@
 import streamlit as st
 from search.vector_search import preprocess_text
 
-def get_conversation_history(max_tokens=1000):
+def get_conversation_history(max_tokens=1048576):
     history = ""
     token_count = 0
     for message in reversed(st.session_state.messages[:-1]):  # Exclude the last message

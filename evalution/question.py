@@ -97,7 +97,12 @@ def evaluate_answers(model, question, expected_answer, received_answer):
 
 
 def get_embedding(text):
-    inputs = phobert_tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    inputs = phobert_tokenizer(text
+                               , return_tensors="pt"
+                               , truncation=True
+                               , padding=True
+                               # , max_length=512
+                               )
     with torch.no_grad():
         outputs = phobert_model(**inputs)
     return outputs.last_hidden_state[:, 0, :]  # CLS token embedding
